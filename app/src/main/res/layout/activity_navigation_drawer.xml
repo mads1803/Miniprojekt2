@@ -29,11 +29,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingActionButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="20dp"
+                    android:clickable="true"
+
+                    app:backgroundTint="@color/colorPrimary"
+                    app:srcCompat="@android:drawable/ic_input_add" />
+
                 <ListView
                     android:id="@+id/list_options"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:entries="@array/options" />
+                    android:entries="@array/options" >
+
+                </ListView>
+
             </FrameLayout>
         </LinearLayout>
 
@@ -45,7 +59,9 @@
 
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_navigation_drawer"
-            app:menu="@menu/activity_navigation_drawer_drawer" />
+            app:menu="@menu/activity_navigation_drawer_drawer" >
+
+        </android.support.design.widget.NavigationView>
 
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
