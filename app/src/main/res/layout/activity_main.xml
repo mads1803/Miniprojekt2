@@ -7,17 +7,10 @@
     android:orientation="vertical"
     tools:context="com.example.madsstoltenborg.rejsedagbog.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
+    <include
+        layout="@layout/activity_navigation_drawer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="225dp" />
+        android:layout_height="match_parent"
+        android:visibility="visible" />
 
 </LinearLayout>
