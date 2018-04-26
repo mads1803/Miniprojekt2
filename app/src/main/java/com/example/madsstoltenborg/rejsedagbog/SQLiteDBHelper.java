@@ -45,8 +45,9 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         if (oldVersion <= 1) {
             db.execSQL("CREATE TABLE REJSE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "DESTINATION TEXT, "
-                    + "TIDSRUM DATE, "
+                    + "REJSENAVN TEXT, "
+                    + "TIDSRUMFRA LONG, "
+                    + "TIDSRUMTIL LONG, "
                     + "BESKRIVELSE TEXT);");
 
             db.execSQL("CREATE TABLE NOTE ("
