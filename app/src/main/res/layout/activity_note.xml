@@ -38,7 +38,7 @@
                         app:srcCompat="@android:drawable/ic_input_add" />
 
                     <ListView
-                        android:id="@+id/list_options"
+                        android:id="@+id/note_options"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:entries="@array/note_Options">

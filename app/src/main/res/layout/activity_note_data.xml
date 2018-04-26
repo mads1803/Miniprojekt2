@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.madsstoltenborg.rejsedagbog.NoteData">
+
+    <include
+        layout="@layout/app_bar_navigation_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_weight="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="BlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldasl"
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="8dp" />
+                </LinearLayout>
+            </ScrollView>
+
+
+            <include
+                android:id="@+id/map_frag"
+                layout="@layout/activity_maps"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="2" />
+
+            <Button
+                android:id="@+id/note_weblink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/colorAccent"
+                android:onClick="onClickWebView"
+                android:text="Åbn weblink" />
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_navigation_drawer"
+            app:menu="@menu/activity_navigation_drawer_drawer">
+
+        </android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

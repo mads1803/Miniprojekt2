@@ -33,11 +33,14 @@
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/note_map"
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="213dp"
-        android:layout_weight="0" />
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/colorAccent"
+        android:onClick="onClickKort"
+        android:text="Åbn kort" />
 
     <FrameLayout
         android:id="@+id/content_frame"
