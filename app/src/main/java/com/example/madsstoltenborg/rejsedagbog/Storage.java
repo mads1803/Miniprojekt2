@@ -26,9 +26,22 @@ public class Storage {
         return storage;
     }
 
+    //DUMMY
+public void addDummyData(){
+
+        if (getRejse().getCount() == 0){
+
+            Calendar rejsStart = Calendar.getInstance();
+            rejsStart.setTimeInMillis(1524743899);
+            Calendar rejsSlut = Calendar.getInstance();
+            rejsSlut.setTimeInMillis(1524749999);
+
+            insertRejse("Himalaya", "Løbetur", rejsStart,rejsSlut);
+        }
+}
+
 
     //TODO CRUD REJSE
-
 
     public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut ){
         long rejseStartinMillis =  rejseStart.getTimeInMillis();
@@ -53,8 +66,19 @@ public class Storage {
     }
 
     // TODO CRUD DAGBOGSNOTE
+    public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, String longitude, String latitude, String weblink ){
+        SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
+        ContentValues dagbogsValues = new ContentValues();
+        dagbogsValues.put("TITEL", titel);
+        dagbogsValues.put("REJSE_ID", rejse_id);
+        dagbogsValues.put("BESKRIVELSE", beskrivelse);
+        dagbogsValues.put("LONGITUDE", longitude);
+        dagbogsValues.put("LATITUDE", latitude);
+        dagbogsValues.put("WEBLINK", weblink);
+db.insert("NOTE", null, dagbogsValues);
 
-    //
+    }
+    
 
 }
 

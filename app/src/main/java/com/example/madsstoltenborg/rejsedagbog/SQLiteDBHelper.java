@@ -53,9 +53,10 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE NOTE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "TITEL TEXT, "
-                    + "REJSE_ID INTERGER REFERENCES REJSE(_id) ON DELETE CASCADE, "
+                    + "REJSE_ID INTEGER REFERENCES REJSE(_id) ON DELETE CASCADE, "
                     + "BESKRIVELSE TEXT, "
-                    + "LOKATION TEXT, "
+                    + "LONGITUDE TEXT, "
+                    + "LATITUDE TEXT, "
                     + "WEBLINK TEXT);");
 
 
