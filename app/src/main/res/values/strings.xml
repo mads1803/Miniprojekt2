@@ -7,10 +7,17 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string-array name="options">
+
+    <string-array name="rejse_Options">
         <item>Spanien</item>
-        <item>Products</item>
-        <item>Grocery List</item>
+        <item>England</item>
+        <item>Svenskerland</item>
+    </string-array>
+
+    <string-array name="note_Options">
+        <item>Løbetur i bjergene</item>
+        <item>Gåtur i paris</item>
+        <item>Svensk høvdingebold</item>
     </string-array>
 
 

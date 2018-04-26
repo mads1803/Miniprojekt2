@@ -30,21 +30,20 @@
                 android:layout_height="match_parent">
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton4"
+                    android:id="@+id/fab_opretRejse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
                     android:layout_margin="20dp"
                     android:clickable="true"
-                    android:onClick="onClick"
                     app:backgroundTint="@color/colorPrimary"
                     app:srcCompat="@android:drawable/ic_input_add" />
 
                 <ListView
-                    android:id="@+id/list_options"
+                    android:id="@+id/rejse_options"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:entries="@array/options" >
+                    android:entries="@array/rejse_Options">
 
                 </ListView>
 

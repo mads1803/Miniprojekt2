@@ -37,7 +37,9 @@
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Destination"></activity>
+        <activity android:name=".Destination" />
+        <activity android:name=".Note" />
+        <activity android:name=".OpretRejse"></activity>
     </application>
 
 </manifest>
