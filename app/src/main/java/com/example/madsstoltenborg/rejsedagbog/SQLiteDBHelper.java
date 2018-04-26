@@ -49,7 +49,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                     + "TIDSRUMFRA LONG, "
                     + "TIDSRUMTIL LONG, "
                     + "BESKRIVELSE TEXT);");
-
+//TODO evt ændrer tidsrum til strings  - da milliseconds var for lang en integer til testdata
             db.execSQL("CREATE TABLE NOTE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "TITEL TEXT, "
