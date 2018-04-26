@@ -54,7 +54,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "TITEL TEXT, "
                     + "REJSE_ID INTERGER, "
-                    + "BESKRIVELSE INTERGER, "
+                    + "BESKRIVELSE TEXT, "
                     + "LOKATION TEXT, "
                     + "WEBLINK TEXT);");
 
