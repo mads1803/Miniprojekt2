@@ -10,22 +10,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-public class OpretRejse extends AppCompatActivity {
+public class OpretNote extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opret_rejse);
-
+        setContentView(R.layout.activity_opret_note);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
         //TODO: Skal oprette en rejse
-        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.rejse_opret);
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_opret);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OpretRejse.this, MainActivity.class));
+                startActivity(new Intent(OpretNote.this, MainActivity.class));
             }
         });
     }

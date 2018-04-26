@@ -39,7 +39,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Destination" />
         <activity android:name=".Note" />
-        <activity android:name=".OpretRejse"></activity>
+        <activity android:name=".OpretRejse" />
+        <activity android:name=".OpretNote"></activity>
     </application>
 
 </manifest>

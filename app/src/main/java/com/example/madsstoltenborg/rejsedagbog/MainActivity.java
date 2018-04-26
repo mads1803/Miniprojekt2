@@ -45,37 +45,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab_opretRejse);
-        fab1.setOnClickListener(new View.OnClickListener(){
-           @Override
-           public void onClick (View v) {
-               startActivity(new Intent(MainActivity.this, OpretRejse.class));
-
-
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OpretRejse.class));
             }
         });
 
-        ListView lvRejser = (ListView) findViewById(R.id.list_options);
-        //SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,  new int[]{android.R.id.text1});
-        lvRejser.setAdapter(adapter);
 
-        AdapterView.OnClickListener listener = new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+
+
             @Override
-            public void onItemclick(<AdapterView<?> listView, View itemView, int position, long id) {
-                if (position == 0) {
-                    Intent intent = new Intent(MainActivity.this, ContactsContract.CommonDataKinds.Note.class);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    Intent intent = new Intent(MainActivity.this, Note.class);
                     startActivity(intent);
                 }
-
             }
         };
 
+        ListView listView = (ListView) findViewById(R.id.rejse_options);
+        listView.setOnItemClickListener(itemClickListener);
+
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        initList();
-    }
 
 
     @Override
@@ -95,12 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    private void initList(){
-
-
-    }
-
 
 
 }

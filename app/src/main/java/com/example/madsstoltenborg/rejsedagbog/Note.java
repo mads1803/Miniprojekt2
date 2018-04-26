@@ -43,7 +43,7 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v) {
-                startActivity(new Intent(Note.this, Destination.class));
+                startActivity(new Intent(Note.this, OpretNote.class));
 
             }
         });

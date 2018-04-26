@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.madsstoltenborg.rejsedagbog.OpretRejse">
-
+    tools:context="com.example.madsstoltenborg.rejsedagbog.OpretNote">
 
     <include
         layout="@layout/app_bar_navigation_drawer"
@@ -15,34 +14,30 @@
         android:layout_weight="0" />
 
     <EditText
-        android:id="@+id/rejse_titel"
+        android:id="@+id/note_titel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Rejse Titel"
+        android:hint="Note Titel"
         android:inputType="textPersonName"
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/rejse_DatoFra"
+        android:id="@+id/note_lokation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Fra Dato"
+        android:hint="Lokation"
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/rejse_DateTil"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/note_map"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:ems="10"
-        android:hint="Til Dato"
-        android:inputType="textPersonName"
-        android:textSize="24sp" />
+        android:layout_height="213dp"
+        android:layout_weight="0" />
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -51,7 +46,7 @@
         android:layout_weight="0">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/rejse_opret"
+            android:id="@+id/note_opret"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -61,13 +56,12 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <EditText
-            android:id="@+id/rejse_beskrivelse"
+            android:id="@+id/note_beskrivelse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
             android:hint="Tilføj en beskrivelse" />
 
     </FrameLayout>
-
 
 </LinearLayout>
