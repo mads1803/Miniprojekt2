@@ -13,14 +13,15 @@ public class Rejse {
     private Calendar rejseSlut;
     private String beskrivelse;
 
-    public Rejse(String destination, Calendar rejseStart, Calendar rejseSlut) {
-        this(-1, destination, rejseStart, rejseSlut);
+    public Rejse(String rejseNavn, Calendar rejseStart, Calendar rejseSlut, String beskrivelse) {
+        this(-1, rejseNavn, rejseStart, rejseSlut, beskrivelse);
     }
 
-    public Rejse(long id, String rejseNavn, Calendar rejseStart, Calendar rejseSlut) {
+    public Rejse(long id, String rejseNavn, Calendar rejseStart, Calendar rejseSlut, String beskrivelse) {
         this.rejseNavn = rejseNavn;
         this.rejseStart = rejseStart;
         this.rejseSlut = rejseSlut;
+        this.beskrivelse = beskrivelse;
         this.id = id;
     }
 

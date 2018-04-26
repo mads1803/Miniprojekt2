@@ -1,6 +1,7 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Calendar;
@@ -31,9 +32,7 @@ public class Storage {
 
     public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut ){
         long rejseStartinMillis =  rejseStart.getTimeInMillis();
-
         long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
-
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
 
         ContentValues rejseValues = new ContentValues();
@@ -43,7 +42,16 @@ public class Storage {
         rejseValues.put("BESKRIVELSE", beskrivelse);
         db.insert("REJSE", null, rejseValues);
     }
-    
+
+
+    public RejseCursorWrapper getRejse(){
+        SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
+        Cursor cursor =  db.query("REJSE",
+                new String[]{"_id", "REJSENAVN", "TIDSRUMFRA", "TIDSRUMTIL", "BESKRIVELSE"},
+                null, null, null, null, null, null);
+        return new RejseCursorWrapper(cursor);
+    }
+
     // TODO CRUD DAGBOGSNOTE
 
     //
