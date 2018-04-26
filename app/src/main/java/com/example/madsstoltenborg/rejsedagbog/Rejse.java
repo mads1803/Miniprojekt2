@@ -8,17 +8,19 @@ import java.util.Calendar;
 
 public class Rejse {
     private long id;
-    private String destination;
-    private Calendar tidsrum;
+    private String rejseNavn;
+    private Calendar rejseStart;
+    private Calendar rejseSlut;
     private String beskrivelse;
 
-    public Rejse(String destination, Calendar tidsrum) {
-        this(-1, destination, tidsrum);
+    public Rejse(String destination, Calendar rejseStart, Calendar rejseSlut) {
+        this(-1, destination, rejseStart, rejseSlut);
     }
 
-    public Rejse(long id, String destination, Calendar tidsrum) {
-        this.destination = destination;
-        this.tidsrum = tidsrum;
+    public Rejse(long id, String rejseNavn, Calendar rejseStart, Calendar rejseSlut) {
+        this.rejseNavn = rejseNavn;
+        this.rejseStart = rejseStart;
+        this.rejseSlut = rejseSlut;
         this.id = id;
     }
 
@@ -30,20 +32,28 @@ public class Rejse {
         this.id = id;
     }
 
-    public String getDestination() {
-        return destination;
+    public String getRejseNavn() {
+        return rejseNavn;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setRejseNavn(String rejseNavn) {
+        this.rejseNavn = rejseNavn;
     }
 
-    public Calendar getTidsrum() {
-        return tidsrum;
+    public Calendar getRejseStart() {
+        return rejseStart;
     }
 
-    public void setTidsrum(Calendar tidsrum) {
-        this.tidsrum = tidsrum;
+    public void setRejseStart(Calendar rejseStart) {
+        this.rejseStart = rejseStart;
+    }
+
+    public Calendar getRejseSlut() {
+        return rejseSlut;
+    }
+
+    public void setRejseSlut(Calendar rejseSlut) {
+        this.rejseSlut = rejseSlut;
     }
 
     public String getBeskrivelse() {
