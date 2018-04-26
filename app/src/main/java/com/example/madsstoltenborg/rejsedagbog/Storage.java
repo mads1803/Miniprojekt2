@@ -57,14 +57,6 @@ public void addDummyData(){
     }
 
 
-    public RejseCursorWrapper getRejse(){
-        SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
-        Cursor cursor =  db.query("REJSE",
-                new String[]{"_id", "REJSENAVN", "TIDSRUMFRA", "TIDSRUMTIL", "BESKRIVELSE"},
-                null, null, null, null, null, null);
-        return new RejseCursorWrapper(cursor);
-    }
-
     // TODO CRUD DAGBOGSNOTE
     public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, String longitude, String latitude, String weblink ){
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
@@ -75,10 +67,25 @@ public void addDummyData(){
         dagbogsValues.put("LONGITUDE", longitude);
         dagbogsValues.put("LATITUDE", latitude);
         dagbogsValues.put("WEBLINK", weblink);
-db.insert("NOTE", null, dagbogsValues);
+        db.insert("NOTE", null, dagbogsValues);
 
     }
-    
+//TODO get af rejse og noter
+    public RejseCursorWrapper getRejse(){
+        SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
+        Cursor cursor =  db.query("REJSE",
+                new String[]{"_id", "REJSENAVN", "TIDSRUMFRA", "TIDSRUMTIL", "BESKRIVELSE"},
+                null, null, null, null, null, null);
+        return new RejseCursorWrapper(cursor);
+    }
+
+    public NoteCursorWrapper getDagbogsNote(){
+        SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
+        Cursor cursor =  db.query("NOTE",
+                new String[]{"_id", "TITEL", "REJSE_ID", "BESKRIVELSE", "LONGITUDE", "LATITUDE", "WEBLINK"},
+                null, null, null, null, null, null);
+        return new NoteCursorWrapper(cursor);
+    }
 
 }
 

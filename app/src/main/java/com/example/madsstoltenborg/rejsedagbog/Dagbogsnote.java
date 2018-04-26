@@ -2,6 +2,8 @@ package com.example.madsstoltenborg.rejsedagbog;
 
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.net.URL;
 
 /**
@@ -10,20 +12,22 @@ import java.net.URL;
 
 public class Dagbogsnote {
     private long id;
-    private Rejse rejse;
+    private long rejse_id;
     private String titel;
     private String beskrivelse;
-    private Location lokation;
-    private URL weblink;
+    private LatLng lokation;
+    private String weblink;
 
-    public Dagbogsnote(Rejse rejse, String titel, Location lokation) {
-        this(-1, rejse, titel, lokation);
+    public Dagbogsnote(long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink) {
+        this(-1, rejse_id, titel, beskrivelse, lokation, weblink);
     }
 
-    public Dagbogsnote(long id, Rejse rejse, String titel, Location lokation) {
-        this.rejse = rejse;
+    public Dagbogsnote(long id, long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink) {
+        this.rejse_id = rejse_id;
+        this.beskrivelse = beskrivelse;
         this.titel = titel;
         this.lokation = lokation;
+        this.weblink = weblink;
     }
 
 
@@ -36,12 +40,16 @@ public class Dagbogsnote {
         this.id = id;
     }
 
-    public Rejse getRejse() {
-        return rejse;
+    public long getRejse_id() {
+        return rejse_id;
     }
 
-    public void setRejse(Rejse rejse) {
-        this.rejse = rejse;
+    public void setRejse_id(long rejse_id) {
+        this.rejse_id = rejse_id;
+    }
+
+    public void setLokation(LatLng lokation) {
+        this.lokation = lokation;
     }
 
     public String getTitel() {
@@ -60,19 +68,11 @@ public class Dagbogsnote {
         this.beskrivelse = beskrivelse;
     }
 
-    public Location getLokation() {
-        return lokation;
-    }
-
-    public void setLokation(Location lokation) {
-        this.lokation = lokation;
-    }
-
-    public URL getWeblink() {
+    public String getWeblink() {
         return weblink;
     }
 
-    public void setWeblink(URL weblink) {
+    public void setWeblink(String weblink) {
         this.weblink = weblink;
     }
 
