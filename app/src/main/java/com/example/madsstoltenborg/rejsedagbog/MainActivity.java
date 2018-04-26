@@ -2,6 +2,7 @@ package com.example.madsstoltenborg.rejsedagbog;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,10 +50,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            public void onClick (View v) {
                startActivity(new Intent(MainActivity.this, Destination.class));
 
+
             }
         });
 
+        ListView lvRejser = (ListView) findViewById(R.id.list_options);
+        //SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,  new int[]{android.R.id.text1});
+        lvRejser.setAdapter(adapter);
+
+        AdapterView.OnClickListener listener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemclick(<AdapterView<?> listView, View itemView, int position, long id) {
+                if (position == 0) {
+                    Intent intent = new Intent(MainActivity.this, ContactsContract.CommonDataKinds.Note.class);
+                    startActivity(intent);
+                }
+
+            }
+        };
+
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        initList();
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,6 +94,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void initList(){
+
+
     }
 
 
