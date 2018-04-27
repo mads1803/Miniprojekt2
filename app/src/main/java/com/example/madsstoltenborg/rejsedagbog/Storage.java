@@ -33,17 +33,16 @@ public void addDummyData(){
 
         if (getRejse().getCount() == 0){
 
-            Calendar rejsStart = Calendar.getInstance();
-          //  rejsStart.setTimeInMillis(1524743899);
-            Calendar rejsSlut = Calendar.getInstance();
-         //   rejsSlut.setTimeInMillis(1524749999);
-            rejsStart.set(2014, 10, 30);
-            rejsSlut.set(2015, 01, 01);
-            insertRejse("Himalaya", "Løbetur", "2014-10-13","2017-12-12");
 
-            rejsStart.set(2016, 01, 25);
-            rejsSlut.set(2016, 01, 30);
-            insertRejse("Bornholm", "fisketur", "2014-10-13","2017-12-12");
+            insertRejse("Himalaya", "Løbetur", "2014-10-13","02-11-2016");
+            insertRejse("Bornholm", "fisketur", "2014-10-13","22-10-2012");
+            insertRejse("USA", "fisketur", "2014-10-13","22-10-2012");
+            insertRejse("England", "fisketur", "2014-10-13","22-10-2012");
+
+
+            LatLng lokation = new LatLng(10, 56);
+insertDagbogsNote("Hej jeg er på bornholm",2, "Fisker med pølse", lokation, "www.bcc.dk", "02-12-2016");
+insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk", "02-12-2016");
 
 
         }
