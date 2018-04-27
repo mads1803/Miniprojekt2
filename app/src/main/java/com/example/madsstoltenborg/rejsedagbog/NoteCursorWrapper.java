@@ -30,20 +30,20 @@ String[] latlong = lokationStr.split(",");
 double lat = Double.parseDouble(latlong[0]);
 double longi = Double.parseDouble(latlong[1]);
 
-        Calendar dato = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date date;
-        try {
-            date = df.parse(datoStr);
-            dato.setTime(date);
-
-        } catch (ParseException e){
-            e.printStackTrace();
-        }
+//        Calendar dato = Calendar.getInstance();
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date;
+//        try {
+//            date = df.parse(datoStr);
+//            dato.setTime(date);
+//
+//        } catch (ParseException e){
+//            e.printStackTrace();
+//        }
 
 //TODO Lav longitude og latitude til en lokation
 LatLng lokation = new LatLng(lat, longi);
-return new Dagbogsnote(id, rejseId, titel, beskrivelse, lokation ,weblink, dato);
+return new Dagbogsnote(id, rejseId, titel, beskrivelse, lokation ,weblink, datoStr);
 
     }
 

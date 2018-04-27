@@ -39,11 +39,11 @@ public void addDummyData(){
          //   rejsSlut.setTimeInMillis(1524749999);
             rejsStart.set(2014, 10, 30);
             rejsSlut.set(2015, 01, 01);
-            insertRejse("Himalaya", "Løbetur", rejsStart,rejsSlut);
+            insertRejse("Himalaya", "Løbetur", "2014-10-13","2017-12-12");
 
             rejsStart.set(2016, 01, 25);
             rejsSlut.set(2016, 01, 30);
-            insertRejse("Bornholm", "fisketur", rejsStart, rejsSlut);
+            insertRejse("Bornholm", "fisketur", "2014-10-13","2017-12-12");
 
 
         }
@@ -52,27 +52,27 @@ public void addDummyData(){
 
     //TODO CRUD REJSE
 
-    public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut){
+    public static void insertRejse(String rejseNavn, String beskrivelse, String rejseStart, String rejseSlut){
 //        long rejseStartinMillis =  rejseStart.getTimeInMillis();
   //      long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
-        String rejseStartinText = rejseStart.toString();
-        String rejseSlutinText = rejseSlut.toString();
+      // String rejseStartinText = rejseStart.toString();
+       // String rejseSlutinText = rejseSlut.toString();
 
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
 
         ContentValues rejseValues = new ContentValues();
         rejseValues.put("REJSENAVN", rejseNavn);
-        rejseValues.put("TIDSRUMFRA", rejseStartinText);
-        rejseValues.put("TIDSRUMTIL", rejseSlutinText);
+        rejseValues.put("TIDSRUMFRA", rejseStart);
+        rejseValues.put("TIDSRUMTIL", rejseSlut);
         rejseValues.put("BESKRIVELSE", beskrivelse);
         db.insert("REJSE", null, rejseValues);
     }
 
 
     // TODO CRUD DAGBOGSNOTE
-    public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, Calendar dato){
+    public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, String dato){
        String lokationStr = lokation.toString();
-        String datoStr = dato.toString();
+        //String datoStr = dato.toString();
 
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
         ContentValues dagbogsValues = new ContentValues();
@@ -81,7 +81,7 @@ public void addDummyData(){
         dagbogsValues.put("BESKRIVELSE", beskrivelse);
         dagbogsValues.put("LOKATION", lokationStr);
         dagbogsValues.put("WEBLINK", weblink);
-        dagbogsValues.put("DATO", datoStr);
+        dagbogsValues.put("DATO", dato);
         db.insert("NOTE", null, dagbogsValues);
 
     }

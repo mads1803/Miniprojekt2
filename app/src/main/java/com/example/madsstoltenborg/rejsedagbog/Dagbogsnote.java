@@ -18,13 +18,13 @@ public class Dagbogsnote {
     private String beskrivelse;
     private LatLng lokation;
     private String weblink;
-    private Calendar dato;
+    private String dato;
 
-    public Dagbogsnote(long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, Calendar calendar) {
+    public Dagbogsnote(long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, String calendar) {
         this(-1, rejse_id, titel, beskrivelse, lokation, weblink, calendar);
     }
 
-    public Dagbogsnote(long id, long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, Calendar dato) {
+    public Dagbogsnote(long id, long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, String dato) {
         this.rejse_id = rejse_id;
         this.beskrivelse = beskrivelse;
         this.titel = titel;
@@ -82,11 +82,11 @@ public class Dagbogsnote {
         this.weblink = weblink;
     }
 
-    public Calendar getDato() {
+    public String getDato() {
         return dato;
     }
 
-    public void setDato(Calendar dato) {
+    public void setDato(String dato) {
         this.dato = dato;
     }
 }

@@ -9,15 +9,15 @@ import java.util.Calendar;
 public class Rejse {
     private long id;
     private String rejseNavn;
-    private Calendar rejseStart;
-    private Calendar rejseSlut;
+    private String rejseStart;
+    private String rejseSlut;
     private String beskrivelse;
 
-    public Rejse(String rejseNavn, Calendar rejseStart, Calendar rejseSlut, String beskrivelse) {
+    public Rejse(String rejseNavn, String rejseStart, String rejseSlut, String beskrivelse) {
         this(-1, rejseNavn, rejseStart, rejseSlut, beskrivelse);
     }
 
-    public Rejse(long id, String rejseNavn, Calendar rejseStart, Calendar rejseSlut, String beskrivelse) {
+    public Rejse(long id, String rejseNavn, String rejseStart, String rejseSlut, String beskrivelse) {
         this.rejseNavn = rejseNavn;
         this.rejseStart = rejseStart;
         this.rejseSlut = rejseSlut;
@@ -41,19 +41,19 @@ public class Rejse {
         this.rejseNavn = rejseNavn;
     }
 
-    public Calendar getRejseStart() {
+    public String getRejseStart() {
         return rejseStart;
     }
 
-    public void setRejseStart(Calendar rejseStart) {
+    public void setRejseStart(String rejseStart) {
         this.rejseStart = rejseStart;
     }
 
-    public Calendar getRejseSlut() {
+    public String getRejseSlut() {
         return rejseSlut;
     }
 
-    public void setRejseSlut(Calendar rejseSlut) {
+    public void setRejseSlut(String rejseSlut) {
         this.rejseSlut = rejseSlut;
     }
 

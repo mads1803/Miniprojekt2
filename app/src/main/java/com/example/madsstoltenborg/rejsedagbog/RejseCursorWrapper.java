@@ -21,24 +21,24 @@ public class RejseCursorWrapper extends CursorWrapper {
         String rejseSlutText = getString(getColumnIndex("TIDSRUMTIL"));
         String beskrivelse = getString(getColumnIndex("BESKRIVELSE"));
 
-       Calendar calStart = Calendar.getInstance();
-       Calendar calSlut = Calendar.getInstance();
+//       Calendar calStart = Calendar.getInstance();
+//       Calendar calSlut = Calendar.getInstance();
+//
+//        Date startRejse;
+//        Date slutRejse;
+//
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        try {
+//        startRejse = df.parse(rejseStartText);
+//        calStart.setTime(startRejse);
+//        slutRejse = df.parse(rejseSlutText);
+//        calSlut.setTime(slutRejse);
+//
+//        } catch (ParseException e){
+//            e.printStackTrace();
+//        }
 
-        Date startRejse;
-        Date slutRejse;
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-        try {
-        startRejse = df.parse(rejseStartText);
-        calStart.setTime(startRejse);
-        slutRejse = df.parse(rejseSlutText);
-        calSlut.setTime(slutRejse);
-
-        } catch (ParseException e){
-            e.printStackTrace();
-        }
-
-     return new Rejse(id, rejseNavn, calStart, calSlut, beskrivelse);
+     return new Rejse(id, rejseNavn, rejseStartText, rejseSlutText, beskrivelse);
     }
 }

@@ -13,8 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -28,11 +32,14 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
 
     private SimpleDateFormat dateFormatter;
 
+    private Storage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opret_rejse);
+
+        storage = Storage.getInstance();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -42,7 +49,23 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OpretRejse.this, MainActivity.class));
+                TextView titel =  findViewById(R.id.rejse_titel);
+                String titel1 =  titel.getText().toString();
+
+                TextView beskrivelse =  findViewById(R.id.rejse_beskrivelse);
+                String beskrivelse1 =  beskrivelse.getText().toString();
+
+                TextView dateFra = findViewById(R.id.etxt_fromdate);
+                String fra =  dateFra.getText().toString();
+
+                TextView dateTil = findViewById(R.id.etxt_todate);
+                String til = dateTil.getText().toString();
+
+
+
+                storage.insertRejse(titel1, beskrivelse1, fra, til);
+
+                finish();
             }
         });
 
