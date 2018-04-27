@@ -60,13 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
-
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 0) {
-
-
-
                     Intent intent = new Intent(MainActivity.this, Note.class);
                     startActivity(intent);
                 }
