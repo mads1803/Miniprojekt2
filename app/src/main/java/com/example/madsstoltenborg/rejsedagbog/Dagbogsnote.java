@@ -5,6 +5,7 @@ import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.net.URL;
+import java.util.Calendar;
 
 /**
  * Created by Mads Stoltenborg on 23-04-2018.
@@ -17,20 +18,21 @@ public class Dagbogsnote {
     private String beskrivelse;
     private LatLng lokation;
     private String weblink;
+    private Calendar dato;
 
-    public Dagbogsnote(long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink) {
-        this(-1, rejse_id, titel, beskrivelse, lokation, weblink);
+    public Dagbogsnote(long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, Calendar calendar) {
+        this(-1, rejse_id, titel, beskrivelse, lokation, weblink, calendar);
     }
 
-    public Dagbogsnote(long id, long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink) {
+    public Dagbogsnote(long id, long rejse_id, String titel, String beskrivelse, LatLng lokation, String weblink, Calendar dato) {
         this.rejse_id = rejse_id;
         this.beskrivelse = beskrivelse;
         this.titel = titel;
         this.lokation = lokation;
+
         this.weblink = weblink;
+        this.dato = dato;
     }
-
-
 
     public long getId() {
         return id;
@@ -46,10 +48,6 @@ public class Dagbogsnote {
 
     public void setRejse_id(long rejse_id) {
         this.rejse_id = rejse_id;
-    }
-
-    public void setLokation(LatLng lokation) {
-        this.lokation = lokation;
     }
 
     public String getTitel() {
@@ -68,6 +66,14 @@ public class Dagbogsnote {
         this.beskrivelse = beskrivelse;
     }
 
+    public LatLng getLokation() {
+        return lokation;
+    }
+
+    public void setLokation(LatLng lokation) {
+        this.lokation = lokation;
+    }
+
     public String getWeblink() {
         return weblink;
     }
@@ -76,8 +82,11 @@ public class Dagbogsnote {
         this.weblink = weblink;
     }
 
+    public Calendar getDato() {
+        return dato;
+    }
 
-
-
-
+    public void setDato(Calendar dato) {
+        this.dato = dato;
+    }
 }

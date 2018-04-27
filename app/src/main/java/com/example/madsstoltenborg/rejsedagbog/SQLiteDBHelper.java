@@ -55,8 +55,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                     + "TITEL TEXT, "
                     + "REJSE_ID INTEGER REFERENCES REJSE(_id) ON DELETE CASCADE, "
                     + "BESKRIVELSE TEXT, "
-                    + "LONGITUDE TEXT, "
-                    + "LATITUDE TEXT, "
+                    + "LOKATION TEXT, "
+                    + "DATO TEXT, "
                     + "WEBLINK TEXT);");
 
 
