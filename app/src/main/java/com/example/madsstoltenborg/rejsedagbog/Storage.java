@@ -45,7 +45,7 @@ public void addDummyData(){
             rejsSlut.set(2016, 01, 30);
             insertRejse("Bornholm", "fisketur", rejsStart, rejsSlut);
 
-           //insertDagbogsNote("");
+         
 
         }
 }
@@ -86,7 +86,7 @@ public void addDummyData(){
         db.insert("NOTE", null, dagbogsValues);
 
     }
-//TODO get af alle rejse og noter
+
     public RejseCursorWrapper getRejse(){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("REJSE",
@@ -95,11 +95,12 @@ public void addDummyData(){
         return new RejseCursorWrapper(cursor);
     }
 
-    public NoteCursorWrapper getDagbogsNote(){
+    //TODO note fra id
+    public NoteCursorWrapper getDagbogsNote(long rejse_id){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("NOTE",
                 new String[]{"_id", "TITEL", "REJSE_ID", "BESKRIVELSE", "LOKATION", "WEBLINK", "DATO"},
-                null, null, null, null, null, null);
+                "REJSE_ID = " + rejse_id, null, null, null, null, null);
         return new NoteCursorWrapper(cursor);
     }
 
