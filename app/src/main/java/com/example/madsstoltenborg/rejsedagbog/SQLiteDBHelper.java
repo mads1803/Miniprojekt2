@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLiteDBHelper extends SQLiteOpenHelper {
 
 
-    private static final String DB_NAME = "Shopping";
+    private static final String DB_NAME = "RejseDagbog";
     private static final int DB_VERSION = 2;
     private static Context applicationContext;
     private static SQLiteDBHelper RejseDBhelper;
@@ -46,22 +46,22 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE REJSE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "REJSENAVN TEXT, "
-                    + "TIDSRUMFRA LONG, "
-                    + "TIDSRUMTIL LONG, "
+                    + "TIDSRUMFRA TEXT, "
+                    + "TIDSRUMTIL TEXT, "
                     + "BESKRIVELSE TEXT);");
-//TODO evt ændrer tidsrum til strings  - da milliseconds var for lang en integer til testdata
+//TODO evt ændrer tidsrum til strings  -  TEST CURSORWRAPPER OG STORAGE parsing
             db.execSQL("CREATE TABLE NOTE ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "TITEL TEXT, "
                     + "REJSE_ID INTEGER REFERENCES REJSE(_id) ON DELETE CASCADE, "
                     + "BESKRIVELSE TEXT, "
-                    + "LONGITUDE TEXT, "
-                    + "LATITUDE TEXT, "
+                    + "LOKATION TEXT, "
+                    + "DATO TEXT, "
                     + "WEBLINK TEXT);");
 
 
 
-//            //TODO: View til shopproducts where productid=shopid
+//            //TODO: View til shopproducts where productid=shopid --> HUSK AT SLETTE
 //            //a = shopproducts, b = products, c = shops
 //            db.execSQL("CREATE VIEW SHOP_PRODUCTS_VIEW AS " +
 //                    "SELECT " +

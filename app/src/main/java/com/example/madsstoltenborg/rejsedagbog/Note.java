@@ -10,10 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Note extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -64,17 +67,61 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
         ListView listView = (ListView) findViewById(R.id.note_options);
         listView.setOnItemClickListener(itemClickListener);
+        AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener(){
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CharSequence text = "Hello toast!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(Note.this, text, duration);
+                toast.show();
+                return false;
+            }
+        };
+
     }
+
+
+
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.rejse_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.rejse_cancel:
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Intent intent = null;
 
-        switch(id) {
-            case R.id.action_settings:
-                //showAddProductDialog();
-                break;
+        if (id == R.id.nav_start) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        } else if (id == R.id.nav_kort) {
+            startActivity(new Intent(this, Destination.class));
+        } else if (id == R.id.nav_Slide) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_info) {
+
+        } else if (id == R.id.nav_send) {
 
         }
 

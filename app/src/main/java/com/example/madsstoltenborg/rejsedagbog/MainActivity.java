@@ -1,7 +1,9 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,18 +15,30 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Storage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SQLiteDBHelper.setApplicationContext(this);
+
+        storage = Storage.getInstance();
+        if(doesDataBaseExist(this, "RejseDagbog")==false){
+            Log.v("Database", "Fail");
+        }
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -53,8 +67,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        Cursor cursor = storage.getRejse();
 
+
+
+
+        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -67,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ListView listView = (ListView) findViewById(R.id.rejse_options);
         listView.setOnItemClickListener(itemClickListener);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getRejse(), new String[] {"REJSENAVN"}, new int[]{android.R.id.text1});
+        listView.setAdapter(adapter);
+
+
+
+    }
+
+    private static boolean doesDataBaseExist(Context context, String dbName){
+        File dbFile = context.getDatabasePath(dbName);
+        return dbFile.exists();
 
     }
 
@@ -89,6 +117,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void initList(){
+        ListView lvRejser = (ListView)findViewById(R.id.rejse_options);
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = (int) v.getTag();
+                if(v.getId() == R.id.visRejseKortBtn) {
+                    //Intent intent = new Intent(MainActivity.this, VisRejsekort_activity.class);
+                    //startActivity(intent);
+                }else{
+                    Intent intent = new Intent(MainActivity.this, Note.class);
+                    startActivity(intent);
+
+                }
+            }
+        };
+
+        Cursor cursor = storage.getRejse();
+        RejseAdapter adapter = new RejseAdapter(this, cursor, 0, listener);
+        lvRejser.setAdapter(adapter);
+
+
+
+    }
+
+
 
 
 }

@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 
 /**
@@ -21,7 +23,7 @@ public class Storage {
     public static Storage getInstance(){
         if(storage == null){
             storage = new Storage();
-           // storage.addDummyData();
+            storage.addDummyData();
         }
         return storage;
     }
@@ -32,45 +34,59 @@ public void addDummyData(){
         if (getRejse().getCount() == 0){
 
             Calendar rejsStart = Calendar.getInstance();
-            rejsStart.setTimeInMillis(1524743899);
+          //  rejsStart.setTimeInMillis(1524743899);
             Calendar rejsSlut = Calendar.getInstance();
-            rejsSlut.setTimeInMillis(1524749999);
-
+         //   rejsSlut.setTimeInMillis(1524749999);
+            rejsStart.set(2014, 10, 30);
+            rejsSlut.set(2015, 01, 01);
             insertRejse("Himalaya", "Løbetur", rejsStart,rejsSlut);
+
+            rejsStart.set(2016, 01, 25);
+            rejsSlut.set(2016, 01, 30);
+            insertRejse("Bornholm", "fisketur", rejsStart, rejsSlut);
+
+           //insertDagbogsNote("");
+
         }
 }
 
 
     //TODO CRUD REJSE
 
-    public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut ){
-        long rejseStartinMillis =  rejseStart.getTimeInMillis();
-        long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
+    public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut){
+//        long rejseStartinMillis =  rejseStart.getTimeInMillis();
+  //      long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
+        String rejseStartinText = rejseStart.toString();
+        String rejseSlutinText = rejseSlut.toString();
+
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
 
         ContentValues rejseValues = new ContentValues();
         rejseValues.put("REJSENAVN", rejseNavn);
-        rejseValues.put("TIDSRUMFRA", rejseStartinMillis);
-        rejseValues.put("TIDSRUMTIL", rejseSlutinMillis);
+        rejseValues.put("TIDSRUMFRA", rejseStartinText);
+        rejseValues.put("TIDSRUMTIL", rejseSlutinText);
         rejseValues.put("BESKRIVELSE", beskrivelse);
         db.insert("REJSE", null, rejseValues);
     }
 
 
     // TODO CRUD DAGBOGSNOTE
-    public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, String longitude, String latitude, String weblink ){
+    public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, Calendar dato){
+       String lokationStr = lokation.toString();
+        String datoStr = dato.toString();
+
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
         ContentValues dagbogsValues = new ContentValues();
         dagbogsValues.put("TITEL", titel);
         dagbogsValues.put("REJSE_ID", rejse_id);
         dagbogsValues.put("BESKRIVELSE", beskrivelse);
-        dagbogsValues.put("LONGITUDE", longitude);
-        dagbogsValues.put("LATITUDE", latitude);
+        dagbogsValues.put("LOKATION", lokationStr);
         dagbogsValues.put("WEBLINK", weblink);
+        dagbogsValues.put("DATO", datoStr);
         db.insert("NOTE", null, dagbogsValues);
 
     }
-//TODO get af rejse og noter
+//TODO get af alle rejse og noter
     public RejseCursorWrapper getRejse(){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("REJSE",
@@ -82,7 +98,7 @@ public void addDummyData(){
     public NoteCursorWrapper getDagbogsNote(){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("NOTE",
-                new String[]{"_id", "TITEL", "REJSE_ID", "BESKRIVELSE", "LONGITUDE", "LATITUDE", "WEBLINK"},
+                new String[]{"_id", "TITEL", "REJSE_ID", "BESKRIVELSE", "LOKATION", "WEBLINK", "DATO"},
                 null, null, null, null, null, null);
         return new NoteCursorWrapper(cursor);
     }
