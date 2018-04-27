@@ -23,7 +23,7 @@ public class Storage {
     public static Storage getInstance(){
         if(storage == null){
             storage = new Storage();
-           // storage.addDummyData();
+            storage.addDummyData();
         }
         return storage;
     }

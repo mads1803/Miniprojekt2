@@ -59,7 +59,7 @@ public class RejseAdapter extends CursorAdapter {
 
 
 
-        
+
 
     }
 }
