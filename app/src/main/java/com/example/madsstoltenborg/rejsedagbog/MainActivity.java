@@ -1,5 +1,6 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,11 +15,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,8 +32,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SQLiteDBHelper.setApplicationContext(this);
 
         storage = Storage.getInstance();
+        if(doesDataBaseExist(this, "RejseDagbog")==false){
+            Log.v("Database", "Fail");
+        }
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -58,6 +67,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
+        Cursor cursor = storage.getRejse();
+
+
+
+
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
             @Override
@@ -71,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ListView listView = (ListView) findViewById(R.id.rejse_options);
         listView.setOnItemClickListener(itemClickListener);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getRejse(), new String[] {"REJSENAVN"}, new int[]{android.R.id.text1});
+        listView.setAdapter(adapter);
+
+
+
+    }
+
+    private static boolean doesDataBaseExist(Context context, String dbName){
+        File dbFile = context.getDatabasePath(dbName);
+        return dbFile.exists();
 
     }
 
