@@ -44,14 +44,17 @@ public void addDummyData(){
     //TODO CRUD REJSE
 
     public static void insertRejse(String rejseNavn, String beskrivelse, Calendar rejseStart, Calendar rejseSlut ){
-        long rejseStartinMillis =  rejseStart.getTimeInMillis();
-        long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
+//        long rejseStartinMillis =  rejseStart.getTimeInMillis();
+  //      long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
+        String rejseStartinText = rejseStart.toString();
+        String rejseSlutinText = rejseSlut.toString();
+
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
 
         ContentValues rejseValues = new ContentValues();
         rejseValues.put("REJSENAVN", rejseNavn);
-        rejseValues.put("TIDSRUMFRA", rejseStartinMillis);
-        rejseValues.put("TIDSRUMTIL", rejseSlutinMillis);
+        rejseValues.put("TIDSRUMFRA", rejseStartinText);
+        rejseValues.put("TIDSRUMTIL", rejseSlutinText);
         rejseValues.put("BESKRIVELSE", beskrivelse);
         db.insert("REJSE", null, rejseValues);
     }
