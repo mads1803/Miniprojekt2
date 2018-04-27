@@ -1,6 +1,7 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,14 +17,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class Note extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    public static final String REJSE_ID = "Rejse_id";
+    private Storage storage;
+    private int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
+
+        storage = Storage.getInstance();
+
+        id = (int)getIntent().getExtras().get(REJSE_ID);;
+
+
+
+
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,6 +68,17 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
+
+
+
+
+
+        ListView listView = (ListView) findViewById(R.id.note_options);
+
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getDagbogsNote(id), new String[] {"TITEL"}, new int[]{android.R.id.text1});
+        listView.setAdapter(adapter);
+
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
 
@@ -64,9 +90,8 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }
         };
-
-        ListView listView = (ListView) findViewById(R.id.note_options);
         listView.setOnItemClickListener(itemClickListener);
+
         AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener(){
 
             @Override

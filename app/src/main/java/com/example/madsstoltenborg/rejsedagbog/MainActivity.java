@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Storage storage;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +76,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+
                     Intent intent = new Intent(MainActivity.this, Note.class);
+                    intent.putExtra(Note.REJSE_ID, (int) id);
+                    //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
                     startActivity(intent);
-                }
+
             }
         };
 

@@ -48,11 +48,11 @@ public class RejseAdapter extends CursorAdapter {
         tvRejseNavn.setTag(rejse.getId());
 
         TextView tvRejseDato = (TextView) view.findViewById(R.id.rejseDato);
-        Calendar start = rejse.getRejseStart();
-        Calendar slut = rejse.getRejseSlut();
+        //String start = rejse.getRejseStart();
+        //String slut = rejse.getRejseSlut();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        tvRejseDato.setText(String.format(dateFormat.format(start.getTime()) + " - " + dateFormat.format(slut.getTime())));
+        //tvRejseDato.setText(String.format(dateFormat.format(start.getTime()) + " - " + dateFormat.format(slut.getTime())));
 
         Button rejsekortBtn = (Button) view.findViewById(R.id.visRejseKortBtn);
         rejsekortBtn.setOnClickListener(listener);
