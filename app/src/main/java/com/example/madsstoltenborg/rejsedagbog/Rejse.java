@@ -64,4 +64,9 @@ public class Rejse {
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
+
+    @Override
+    public String toString() {
+        return rejseNavn;
+    }
 }

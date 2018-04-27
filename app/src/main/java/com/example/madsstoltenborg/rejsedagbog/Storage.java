@@ -45,7 +45,6 @@ public void addDummyData(){
             rejsSlut.set(2016, 01, 30);
             insertRejse("Bornholm", "fisketur", rejsStart, rejsSlut);
 
-         
 
         }
 }

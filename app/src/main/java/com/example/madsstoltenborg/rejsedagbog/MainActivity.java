@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Rejser");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,17 +68,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-        Cursor cursor = storage.getRejse();
-
-
-
+        final Cursor cursor = storage.getRejse();
 
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 0) {
-                    Intent intent = new Intent(MainActivity.this, Note.class);
+                    Intent intent = new Intent(MainActivity.this, Note.class);;
                     startActivity(intent);
                 }
             }

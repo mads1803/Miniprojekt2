@@ -24,25 +24,24 @@
         android:inputType="textPersonName"
         android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/rejse_DatoFra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:ems="10"
-        android:hint="Fra Dato"
-        android:inputType="textPersonName"
-        android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/rejse_DateTil"
+        android:id="@+id/etxt_fromdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Til Dato"
-        android:inputType="textPersonName"
-        android:textSize="24sp" />
+        android:hint="Fra"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etxt_todate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Til"
+        android:inputType="textPersonName" />
 
     <FrameLayout
         android:id="@+id/content_frame"
