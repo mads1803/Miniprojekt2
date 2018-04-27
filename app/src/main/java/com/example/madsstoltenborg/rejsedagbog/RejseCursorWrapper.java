@@ -26,6 +26,7 @@ public class RejseCursorWrapper extends CursorWrapper {
 
         Date startRejse;
         Date slutRejse;
+        
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         try {

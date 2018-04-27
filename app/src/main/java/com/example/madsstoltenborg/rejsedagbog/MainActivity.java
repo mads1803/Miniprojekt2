@@ -2,6 +2,7 @@ package com.example.madsstoltenborg.rejsedagbog;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -21,10 +22,14 @@ import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Storage storage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        storage = Storage.getInstance();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 0) {
+
+
+
                     Intent intent = new Intent(MainActivity.this, Note.class);
                     startActivity(intent);
                 }
@@ -89,6 +97,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void initList(){
+        ListView lvRejser = (ListView)findViewById(R.id.rejse_options);
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = (int) v.getTag();
+                if(v.getId() == R.id.visRejseKortBtn) {
+                    //Intent intent = new Intent(MainActivity.this, VisRejsekort_activity.class);
+                    //startActivity(intent);
+                }else{
+                    Intent intent = new Intent(MainActivity.this, Note.class);
+                    startActivity(intent);
+
+                }
+            }
+        };
+
+        Cursor cursor = storage.getRejse();
+        RejseAdapter adapter = new RejseAdapter(this, cursor, 0, listener);
+        lvRejser.setAdapter(adapter);
+
+
+
+    }
+
+
 
 
 }
