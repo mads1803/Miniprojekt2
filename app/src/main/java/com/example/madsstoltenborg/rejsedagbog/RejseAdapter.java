@@ -57,5 +57,9 @@ public class RejseAdapter extends CursorAdapter {
         Button rejsekortBtn = (Button) view.findViewById(R.id.visRejseKortBtn);
         rejsekortBtn.setOnClickListener(listener);
 
+
+
+        
+
     }
 }
