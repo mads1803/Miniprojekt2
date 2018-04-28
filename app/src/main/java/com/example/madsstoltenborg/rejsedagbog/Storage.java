@@ -67,6 +67,23 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
         db.insert("REJSE", null, rejseValues);
     }
 
+    public static void updateRejse(long _id, String rejseNavn, String beskrivelse, String rejseStart, String rejseSlut){
+//        long rejseStartinMillis =  rejseStart.getTimeInMillis();
+        //      long rejseSlutinMillis =  rejseSlut.getTimeInMillis();
+        // String rejseStartinText = rejseStart.toString();
+        // String rejseSlutinText = rejseSlut.toString();
+
+        SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
+
+        ContentValues rejseValues = new ContentValues();
+        rejseValues.put("REJSENAVN", rejseNavn);
+        rejseValues.put("TIDSRUMFRA", rejseStart);
+        rejseValues.put("TIDSRUMTIL", rejseSlut);
+        rejseValues.put("BESKRIVELSE", beskrivelse);
+        db.update("REJSE", rejseValues, "_id=" + _id, null);
+    db.close();
+    }
+
 
     // TODO CRUD DAGBOGSNOTE
     public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, String dato){
@@ -82,9 +99,26 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
         dagbogsValues.put("WEBLINK", weblink);
         dagbogsValues.put("DATO", dato);
         db.insert("NOTE", null, dagbogsValues);
-
     }
 
+    public static void updateDagbogsNote (long note_id, String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, String dato){
+        String lokationStr = lokation.toString();
+        //String datoStr = dato.toString();
+
+        SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
+        ContentValues dagbogsValues = new ContentValues();
+        dagbogsValues.put("TITEL", titel);
+        dagbogsValues.put("REJSE_ID", rejse_id);
+        dagbogsValues.put("BESKRIVELSE", beskrivelse);
+        dagbogsValues.put("LOKATION", lokationStr);
+        dagbogsValues.put("WEBLINK", weblink);
+        dagbogsValues.put("DATO", dato);
+        db.update("NOTE", dagbogsValues, "_id=" + note_id, null);
+        db.close();
+    }
+
+
+    // TODO getters
     public RejseCursorWrapper getRejse(){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("REJSE",
@@ -93,7 +127,6 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
         return new RejseCursorWrapper(cursor);
     }
 
-    //TODO note fra id
     public NoteCursorWrapper getDagbogsNote(long rejse_id){
         SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
         Cursor cursor =  db.query("NOTE",
