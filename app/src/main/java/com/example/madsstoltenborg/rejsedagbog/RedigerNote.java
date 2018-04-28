@@ -55,6 +55,9 @@ private int id;
             weblink.setText(redigeringsNote.getWeblink());
             dato.setText(redigeringsNote.getDato());
 
+            lokation = redigeringsNote.getLokation();
+
+
          final int rejseId = (int) redigeringsNote.getRejse_id();
 
 

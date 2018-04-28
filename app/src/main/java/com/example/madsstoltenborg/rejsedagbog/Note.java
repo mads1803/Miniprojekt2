@@ -88,7 +88,7 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Note.this, RedigerNote.class);
-
+                intent.putExtra(NOTE_ID, (int) l);
                 startActivity(intent);
 
                 //TODO lav til en snackbar
