@@ -48,8 +48,6 @@ public class RejseAdapter extends CursorAdapter {
         tvRejseNavn.setTag(rejse.getId());
 
         TextView tvRejseDato = (TextView) view.findViewById(R.id.rejseDato);
-        //String start = rejse.getRejseStart();
-        //String slut = rejse.getRejseSlut();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         tvRejseDato.setText(String.format(rejse.getRejseStart() + "  -  " + rejse.getRejseSlut()));

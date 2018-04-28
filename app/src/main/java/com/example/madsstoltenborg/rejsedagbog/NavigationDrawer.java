@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,14 +75,17 @@ public class NavigationDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_start) {
+            Log.v("Drawer", "nav_start");
             startActivity(new Intent(this, MainActivity.class));
         } else if (id == R.id.nav_kort) {
             startActivity(new Intent(this, Destination.class));
-        } else if (id == R.id.nav_Slide) {
+        } else if (id == R.id.nav_favouritter) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_kalender) {
 
         } else if (id == R.id.nav_info) {
+            Log.v("Drawer", "navInfo");
+            Toast myToast = Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
             Snackbar mySnack = Snackbar.make(findViewById(R.id.drawer_layout), "Ikke implementeret", Snackbar.LENGTH_SHORT);
             mySnack.show();
             Log.v("Drawer", "navInfo");
