@@ -33,6 +33,16 @@
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
+    <EditText
+        android:id="@+id/rediger_note_dato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Dato"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
+
     <Button
         android:id="@+id/rediger_button"
         android:layout_width="match_parent"
@@ -64,6 +74,7 @@
             android:layout_height="match_parent"
             android:gravity="top"
             android:hint="Tilføj en beskrivelse" />
+
 
     </FrameLayout>
 

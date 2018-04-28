@@ -32,19 +32,18 @@ private int id;
 
         //TODO: Skal oprette en rejse
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_rediger);
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 TextView titel = findViewById(R.id.rediger_note_titel);
-                String sTitel = titel.getText().toString();
+                final String sTitel = titel.getText().toString();
 
                 TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
-                String sBeskrivelse = beskrivelse.getText().toString();
+                final String sBeskrivelse = beskrivelse.getText().toString();
 
                 TextView weblink = findViewById(R.id.rediger_note_weblink);
+                final String sweblink = weblink.getText().toString();
 
-              //  TextView dato = findViewById(R.id.red);
-
+              TextView dato = findViewById(R.id.rediger_note_dato);
+              final String sDato = dato.getText().toString();
 
                 //TODO ÆNDRER TIL NOTE ID
               id = (int)getIntent().getExtras().get(Note.REJSE_ID);
@@ -53,12 +52,19 @@ private int id;
              Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
             titel.setText(redigeringsNote.getTitel());
             beskrivelse.setText(redigeringsNote.getBeskrivelse());
-weblink.setText(redigeringsNote.getWeblink());
+            weblink.setText(redigeringsNote.getWeblink());
+            dato.setText(redigeringsNote.getDato());
+
+         final int rejseId = (int) redigeringsNote.getRejse_id();
 
 
             redigeringsNote.getLokation();
             redigeringsNote.getDato();
-
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO get rejseID
+            storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation,sweblink ,sDato);
 
             }
         });
