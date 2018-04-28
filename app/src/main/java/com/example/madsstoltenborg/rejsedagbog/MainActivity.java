@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        // Set toolbar text
         getSupportActionBar().setTitle("Rejser");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

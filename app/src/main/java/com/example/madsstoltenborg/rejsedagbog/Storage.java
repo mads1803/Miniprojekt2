@@ -87,8 +87,13 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
 
     // TODO CRUD DAGBOGSNOTE
     public static void insertDagbogsNote (String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, String dato){
-       String lokationStr = lokation.toString();
+       //String lokationStr = lokation.toString();
         //String datoStr = dato.toString();
+
+        double lat = lokation.latitude;
+        double longi = lokation.longitude;
+
+        String lokationStr = ""+lat +","+longi;
 
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
         ContentValues dagbogsValues = new ContentValues();
@@ -135,5 +140,12 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
         return new NoteCursorWrapper(cursor);
     }
 
+    public NoteCursorWrapper getNote(long note_id){
+        SQLiteDatabase db = rejseDatabaseHelper.getReadableDatabase();
+        Cursor cursor =  db.query("NOTE",
+                new String[]{"_id", "TITEL", "REJSE_ID", "BESKRIVELSE", "LOKATION", "WEBLINK", "DATO"},
+                "_id = " + note_id, null, null, null, null, null);
+        return new NoteCursorWrapper(cursor);
+    }
 }
 

@@ -1,5 +1,7 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
@@ -23,15 +25,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class Destination extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapLongClickListener {
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
-    private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
-    private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
-
-    private Marker mPerth;
-    private Marker mSydney;
-    private Marker mBrisbane;
 
     private GoogleMap mMap;
+    private double latitude;
+    private double longitude;
+    private String noteNavn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,42 +40,42 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        // Set toolbar text
+        getSupportActionBar().setTitle("Kort");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
 
-
-
-
+        if(getIntent().getExtras() != null){
+             latitude = getIntent().getDoubleExtra("latitude", 0);
+             longitude = getIntent().getDoubleExtra("longitude", 0);
+             noteNavn = getIntent().getStringExtra("noteNavn");
+        }
     }
-
+    private Marker marker;
     @Override
     public void onMapLongClick(LatLng point){
-        mMap.addMarker(new MarkerOptions().position(point).title(point.toString()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        if (marker != null){
+            marker.setPosition(point);
+        }else {
+            marker = mMap.addMarker(new MarkerOptions().position(point).title(point.toString()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        }
 
+        setResult(Activity.RESULT_OK, new Intent().putExtra("latitude", marker.getPosition().latitude).putExtra("longitude", marker.getPosition().longitude));
     }
 
     /** Called when the map is ready. */
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-
-        // Add some markers to the map, and add a data object to each marker.
-        mPerth = mMap.addMarker(new MarkerOptions()
-                .position(PERTH)
-                .title("Perth"));
-        mPerth.setTag(0);
-
-        mSydney = mMap.addMarker(new MarkerOptions()
-                .position(SYDNEY)
-                .title("Sydney"));
-        mSydney.setTag(0);
-
-        mBrisbane = mMap.addMarker(new MarkerOptions()
-                .position(BRISBANE)
-                .title("Brisbane"));
-        mBrisbane.setTag(0);
+        MarkerOptions marker;
+        if(getIntent().getExtras() != null){
+            LatLng position = new LatLng(latitude, longitude);
+            marker = new MarkerOptions().position(position).title(noteNavn);
+            mMap.addMarker(marker);
+        }
 
         // Set a listener for marker click.
         mMap.setOnMarkerClickListener(this);
@@ -101,9 +99,6 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                     Toast.LENGTH_SHORT).show();
         }
 
-        // Return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
         return false;
     }
 
@@ -120,8 +115,6 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         switch (item.getItemId()) {
             case R.id.map_ok:
                finish();
-
-               //TODO: FinishForResult her
                 return true;
 
             default:

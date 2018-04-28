@@ -2,6 +2,7 @@ package com.example.madsstoltenborg.rejsedagbog;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -17,18 +18,19 @@ public class NoteCursorWrapper extends CursorWrapper {
     }
 
     public Dagbogsnote getDagbogsNote(){
-long id = getLong(getColumnIndex("_id"));
-String titel = getString(getColumnIndex("TITEL"));
-long rejseId = getLong(getColumnIndex("REJSE_ID"));
-String beskrivelse = getString(getColumnIndex("BESKRIVELSE"));
-String lokationStr = getString(getColumnIndex("LOKATION"));
+        long id = getLong(getColumnIndex("_id"));
+        String titel = getString(getColumnIndex("TITEL"));
+        long rejseId = getLong(getColumnIndex("REJSE_ID"));
+        String beskrivelse = getString(getColumnIndex("BESKRIVELSE"));
+        String lokationStr = getString(getColumnIndex("LOKATION"));
 
-String weblink = getString(getColumnIndex("WEBLINK"));
-String datoStr = getString(getColumnIndex("DATO"));
+        String weblink = getString(getColumnIndex("WEBLINK"));
+        String datoStr = getString(getColumnIndex("DATO"));
 
-String[] latlong = lokationStr.split(",");
-double lat = Double.parseDouble(latlong[0]);
-double longi = Double.parseDouble(latlong[1]);
+
+        String[] latlong = lokationStr.split(",");
+        double lat = Double.parseDouble(latlong[0]);
+        double longi = Double.parseDouble(latlong[1]);
 
 //        Calendar dato = Calendar.getInstance();
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,9 +43,9 @@ double longi = Double.parseDouble(latlong[1]);
 //            e.printStackTrace();
 //        }
 
-//TODO Lav longitude og latitude til en lokation
-LatLng lokation = new LatLng(lat, longi);
-return new Dagbogsnote(id, rejseId, titel, beskrivelse, lokation ,weblink, datoStr);
+        //TODO Lav longitude og latitude til en lokation
+        LatLng lokation = new LatLng(lat, longi);
+        return new Dagbogsnote(id, rejseId, titel, beskrivelse, lokation ,weblink, datoStr);
 
     }
 

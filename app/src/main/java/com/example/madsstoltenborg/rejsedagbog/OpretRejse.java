@@ -44,6 +44,9 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        // Set toolbar text
+        getSupportActionBar().setTitle("Opret Rejse");
+
         //TODO: Skal oprette en rejse
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.rejse_opret);
         fab1.setOnClickListener(new View.OnClickListener() {

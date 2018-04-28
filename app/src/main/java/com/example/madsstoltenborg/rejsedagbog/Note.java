@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,12 +21,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import static com.example.madsstoltenborg.rejsedagbog.NoteData.NOTE_ID;
+
 public class Note extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     public static final String REJSE_ID = "Rejse_id";
     private Storage storage;
     private int id;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,12 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
         storage = Storage.getInstance();
 
-        id = (int)getIntent().getExtras().get(REJSE_ID);;
-
-
+        id = (int)getIntent().getExtras().get(REJSE_ID);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set toolbar text
+        getSupportActionBar().setTitle("Mine Noter");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,27 +62,23 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v) {
-                startActivity(new Intent(Note.this, OpretNote.class));
-
+                Intent intent = new Intent(Note.this, OpretNote.class);
+                intent.putExtra("Rejse_id", id);
+                startActivity(intent);
             }
         });
 
-
         ListView listView = (ListView) findViewById(R.id.note_options);
-
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getDagbogsNote(id), new String[] {"TITEL"}, new int[]{android.R.id.text1});
         listView.setAdapter(adapter);
 
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-
-
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
-                    Intent intent = new Intent(Note.this, NoteData.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(Note.this, NoteData.class);
+                intent.putExtra(NOTE_ID, (int) l);
+                startActivity(intent);
             }
         };
         listView.setOnItemClickListener(itemClickListener);
@@ -88,14 +87,18 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
+                Intent intent = new Intent(Note.this, RedigerNote.class);
 
-                Toast toast = Toast.makeText(Note.this, text, duration);
+                startActivity(intent);
+
+                //TODO lav til en snackbar
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(Note.this, R.string.rediger, duration);
                 toast.show();
                 return false;
             }
         };
+        listView.setOnItemLongClickListener(itemLongClickListener);
 
     }
 

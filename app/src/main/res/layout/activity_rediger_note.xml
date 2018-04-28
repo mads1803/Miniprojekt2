@@ -14,7 +14,7 @@
         android:layout_weight="0" />
 
     <EditText
-        android:id="@+id/note_titel"
+        android:id="@+id/rediger_note_titel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -24,7 +24,7 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/note_weblink"
+        android:id="@+id/rediger_note_weblink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -33,8 +33,18 @@
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
+    <EditText
+        android:id="@+id/rediger_note_dato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Dato"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/rediger_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -49,7 +59,7 @@
         android:layout_weight="0">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/note_opret"
+            android:id="@+id/note_rediger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -59,11 +69,12 @@
             app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <EditText
-            android:id="@+id/note_beskrivelse"
+            android:id="@+id/rediger_note_beskrivelse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
             android:hint="Tilføj en beskrivelse" />
+
 
     </FrameLayout>
 

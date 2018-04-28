@@ -2,9 +2,9 @@ package com.example.madsstoltenborg.rejsedagbog;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,48 +14,63 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import org.w3c.dom.Text;
-
-public class OpretNote extends AppCompatActivity {
+public class RedigerNote extends AppCompatActivity {
 private Storage storage;
 private static final int REQUEST_GET_MAP_LOCATION = 0;
 private LatLng lokation;
-private String noteNavn = "";
-public static final String REJSE_ID = "Rejse_id";
 private int id;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opret_note);
+        setContentView(R.layout.activity_rediger_note);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         // Set toolbar text
-        getSupportActionBar().setTitle("Opret note");
+        getSupportActionBar().setTitle("Rediger note");
 
-        id = (int)getIntent().getExtras().get("Rejse_id");
+        //TODO: Skal oprette en rejse
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_rediger);
 
-        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_opret);
+                TextView titel = findViewById(R.id.rediger_note_titel);
+                final String sTitel = titel.getText().toString();
+
+                TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
+                final String sBeskrivelse = beskrivelse.getText().toString();
+
+                TextView weblink = findViewById(R.id.rediger_note_weblink);
+                final String sweblink = weblink.getText().toString();
+
+              TextView dato = findViewById(R.id.rediger_note_dato);
+              final String sDato = dato.getText().toString();
+
+                //TODO ÆNDRER TIL NOTE ID
+              id = (int)getIntent().getExtras().get(Note.REJSE_ID);
+              NoteCursorWrapper cursor =  storage.getDagbogsNote(id);
+
+             Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
+            titel.setText(redigeringsNote.getTitel());
+            beskrivelse.setText(redigeringsNote.getBeskrivelse());
+            weblink.setText(redigeringsNote.getWeblink());
+            dato.setText(redigeringsNote.getDato());
+
+         final int rejseId = (int) redigeringsNote.getRejse_id();
+
+
+            redigeringsNote.getLokation();
+            redigeringsNote.getDato();
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView titel = findViewById(R.id.note_titel);
-                String sTitel = titel.getText().toString();
+                //TODO get rejseID
+            storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation,sweblink ,sDato);
 
-                noteNavn = sTitel;
-
-                TextView beskrivelse = findViewById(R.id.note_beskrivelse);
-                String sBeskrivelse = beskrivelse.getText().toString();
-
-                TextView weblink = findViewById(R.id.note_weblink);
-                String sWeblink = beskrivelse.getText().toString();
-
-                // TODO: dato
-                storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation,sWeblink, "10-10-1001");
-
-                finish();
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,8 +99,8 @@ private int id;
 
             double latitude = lokation.latitude;
             double longitude = lokation.longitude;
-
-            intent.putExtra("latitude", latitude).putExtra("longitude", longitude).putExtra("noteNavn", noteNavn);
+            
+            intent.putExtra("latitude", latitude).putExtra("longitude", longitude);
         }
 
         startActivityForResult(intent, REQUEST_GET_MAP_LOCATION);
@@ -98,6 +113,10 @@ private int id;
             double longitude = data.getDoubleExtra("longitude", 0);
 
             lokation = new LatLng(latitude, longitude);
+
+            TextView tvLokation = findViewById(R.id.rediger_note_titel);
+            tvLokation.setText(""+lokation);
+
         }
     }
 }
