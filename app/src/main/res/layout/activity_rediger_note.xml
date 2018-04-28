@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.madsstoltenborg.rejsedagbog.OpretNote">
+
+    <include
+        layout="@layout/app_bar_navigation_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" />
+
+    <EditText
+        android:id="@+id/rediger_note_titel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Note Titel"
+        android:inputType="textPersonName"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/rediger_note_weblink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Weblink"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/rediger_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/colorAccent"
+        android:onClick="onClickKort"
+        android:text="Åbn kort" />
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/note_rediger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <EditText
+            android:id="@+id/rediger_note_beskrivelse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:hint="Tilføj en beskrivelse" />
+
+    </FrameLayout>
+
+</LinearLayout>
