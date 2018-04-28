@@ -18,6 +18,8 @@ public class RedigerNote extends AppCompatActivity {
 private Storage storage;
 private static final int REQUEST_GET_MAP_LOCATION = 0;
 private LatLng lokation;
+private int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,30 @@ private LatLng lokation;
                 TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
                 String sBeskrivelse = beskrivelse.getText().toString();
 
-                // TODO: Tilføje den rigtige rejse og dato
-                storage.insertDagbogsNote(sTitel, 0, sBeskrivelse, lokation,"www.example.com", "10-10-1001");
+                TextView weblink = findViewById(R.id.rediger_note_weblink);
 
-                finish();
+              //  TextView dato = findViewById(R.id.red);
+
+
+                //TODO ÆNDRER TIL NOTE ID
+              id = (int)getIntent().getExtras().get(Note.REJSE_ID);
+              NoteCursorWrapper cursor =  storage.getDagbogsNote(id);
+
+             Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
+            titel.setText(redigeringsNote.getTitel());
+            beskrivelse.setText(redigeringsNote.getBeskrivelse());
+weblink.setText(redigeringsNote.getWeblink());
+
+
+            redigeringsNote.getLokation();
+            redigeringsNote.getDato();
+
+
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
