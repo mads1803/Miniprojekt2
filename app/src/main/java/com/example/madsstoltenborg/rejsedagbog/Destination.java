@@ -1,5 +1,7 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +34,8 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
     private Marker mBrisbane;
 
     private GoogleMap mMap;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +46,18 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        // Set toolbar text
+        getSupportActionBar().setTitle("Kort");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
 
+        if(getIntent().getExtras() != null){
+             latitude = getIntent().getDoubleExtra("latitude", 0);
+             longitude = getIntent().getDoubleExtra("longitude", 0);
+        }
 
 
 
@@ -54,8 +65,12 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapLongClick(LatLng point){
-        mMap.addMarker(new MarkerOptions().position(point).title(point.toString()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(point).title(point.toString()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        double latitude = marker.getPosition().latitude;
+        double longitude = marker.getPosition().longitude;
 
+        setResult(Activity.RESULT_OK, new Intent().putExtra("latitude", latitude).putExtra("longitude", longitude));
+        //finish();
     }
 
     /** Called when the map is ready. */
@@ -79,6 +94,12 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                 .title("Brisbane"));
         mBrisbane.setTag(0);
 
+
+        LatLng position = new LatLng(latitude, longitude);
+        mMap.addMarker(new MarkerOptions().position(position).title("Test"));
+
+
+
         // Set a listener for marker click.
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapLongClickListener(this);
@@ -101,9 +122,6 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                     Toast.LENGTH_SHORT).show();
         }
 
-        // Return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
         return false;
     }
 
@@ -120,8 +138,6 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         switch (item.getItemId()) {
             case R.id.map_ok:
                finish();
-
-               //TODO: FinishForResult her
                 return true;
 
             default:

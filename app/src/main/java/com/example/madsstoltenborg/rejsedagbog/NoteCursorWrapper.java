@@ -26,7 +26,7 @@ String lokationStr = getString(getColumnIndex("LOKATION"));
 String weblink = getString(getColumnIndex("WEBLINK"));
 String datoStr = getString(getColumnIndex("DATO"));
 
-String[] latlong = lokationStr.split(",");
+    String[] latlong = lokationStr.split(",");
 double lat = Double.parseDouble(latlong[0]);
 double longi = Double.parseDouble(latlong[1]);
 

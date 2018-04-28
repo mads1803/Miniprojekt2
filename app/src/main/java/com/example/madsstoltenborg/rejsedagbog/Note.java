@@ -34,15 +34,13 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
         storage = Storage.getInstance();
 
-        id = (int)getIntent().getExtras().get(REJSE_ID);;
-
-
-
-
-
+        id = (int)getIntent().getExtras().get(REJSE_ID);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set toolbar text
+        getSupportActionBar().setTitle("Mine Noter");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,13 +66,7 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
-
-
-
-
-
         ListView listView = (ListView) findViewById(R.id.note_options);
-
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getDagbogsNote(id), new String[] {"TITEL"}, new int[]{android.R.id.text1});
         listView.setAdapter(adapter);

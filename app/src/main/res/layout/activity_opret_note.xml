@@ -24,12 +24,12 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/note_lokation"
+        android:id="@+id/note_weblink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Lokation"
+        android:hint="Weblink"
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
@@ -56,7 +56,7 @@
             android:layout_margin="20dp"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <EditText
             android:id="@+id/note_beskrivelse"
