@@ -21,12 +21,12 @@ public class RejseAdapter extends CursorAdapter {
 
     private Storage storage;
     private LayoutInflater cursorInflater;
-    //private View.OnClickListener listener;
+    private View.OnClickListener listener;
 
-    public RejseAdapter(Context context, Cursor cursor, int flags){
+    public RejseAdapter(Context context, Cursor cursor, int flags, View.OnClickListener listener){
         super(context, cursor, flags);
         cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //this.listener = listener;
+        this.listener = listener;
         storage = Storage.getInstance();
 
     }
@@ -48,14 +48,12 @@ public class RejseAdapter extends CursorAdapter {
         tvRejseNavn.setTag(rejse.getId());
 
         TextView tvRejseDato = (TextView) view.findViewById(R.id.rejseDato);
-        //String start = rejse.getRejseStart();
-        //String slut = rejse.getRejseSlut();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         tvRejseDato.setText(String.format(rejse.getRejseStart() + "  -  " + rejse.getRejseSlut()));
 
         Button rejsekortBtn = (Button) view.findViewById(R.id.visRejseKortBtn);
-        //rejsekortBtn.setOnClickListener(listener);
+        rejsekortBtn.setOnClickListener(listener);
 
 
 

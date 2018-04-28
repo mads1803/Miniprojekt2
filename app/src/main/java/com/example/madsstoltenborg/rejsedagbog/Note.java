@@ -37,10 +37,6 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         id = (int)getIntent().getExtras().get(REJSE_ID);;
 
 
-
-
-
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
@@ -67,10 +63,6 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
             }
         });
-
-
-
-
 
 
         ListView listView = (ListView) findViewById(R.id.note_options);
@@ -140,9 +132,9 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(new Intent(this, MainActivity.class));
         } else if (id == R.id.nav_kort) {
             startActivity(new Intent(this, Destination.class));
-        } else if (id == R.id.nav_Slide) {
+        } else if (id == R.id.nav_favouritter) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_kalender) {
 
         } else if (id == R.id.nav_info) {
 

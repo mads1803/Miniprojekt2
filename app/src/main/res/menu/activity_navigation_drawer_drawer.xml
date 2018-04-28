@@ -13,13 +13,13 @@
             android:icon="@android:drawable/ic_menu_mapmode"
             android:title="Kort" />
         <item
-            android:id="@+id/nav_Slide"
+            android:id="@+id/nav_favouritter"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Blabla" />
+            android:title="Favoritter" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_kalender"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Bla bla" />
+            android:title="Kalender" />
     </group>
 
     <item android:title="Communicate">
@@ -31,7 +31,7 @@
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Blabla" />
+                android:title="Kontakter" />
         </menu>
     </item>
 

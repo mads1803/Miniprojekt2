@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -69,11 +70,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-
     initList();
 
 
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        initList();
     }
 
     private static boolean doesDataBaseExist(Context context, String dbName){
@@ -91,9 +95,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = null;
 
         switch(id) {
-            case R.id.action_settings:
-                //showAddProductDialog();
+            case R.id.nav_start:
+                Intent startIntent = new Intent(this, MainActivity.class);
+                startActivity(startIntent);
                 break;
+            case R.id.nav_kort:
+                Intent mapIntent = new Intent (this, Destination.class);
+                break;
+            case R.id.nav_favouritter:
+                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                break;
+            case R.id.nav_kalender:
+                Toast.makeText(MainActivity.this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                break;
+            case R.id.nav_info:
+                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                break;
+            case R.id.nav_send:
+                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                break;
+
+
+
 
         }
 
@@ -118,10 +141,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         };
+        View.OnClickListener btnlistener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(MainActivity.this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                t.show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.Root), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
+            }
+        };
+
+
 
 
         Cursor cursor = storage.getRejse();
-        RejseAdapter adapter = new RejseAdapter(this, cursor, 0);
+        RejseAdapter adapter = new RejseAdapter(this, cursor, 0, btnlistener);
+
+
 
 
         lvRejser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -144,11 +179,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         lvRejser.setAdapter(adapter);
 
-
-
     }
-
-
-
 
 }
