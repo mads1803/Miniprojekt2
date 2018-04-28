@@ -72,11 +72,9 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         mMap = map;
         MarkerOptions marker;
         if(getIntent().getExtras() != null){
-
             LatLng position = new LatLng(latitude, longitude);
             marker = new MarkerOptions().position(position).title(noteNavn);
             mMap.addMarker(marker);
-
         }
 
         // Set a listener for marker click.

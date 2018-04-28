@@ -32,7 +32,7 @@ private int id;
         // Set toolbar text
         getSupportActionBar().setTitle("Opret note");
 
-        id = (int)getIntent().getExtras().get(REJSE_ID);
+        id = (int)getIntent().getExtras().get("Rejse_id");
 
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_opret);
         fab1.setOnClickListener(new View.OnClickListener() {
