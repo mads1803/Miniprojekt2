@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -69,26 +70,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-        final Cursor cursor = storage.getRejse();
 
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-
-                    Intent intent = new Intent(MainActivity.this, Note.class);
-                    intent.putExtra(Note.REJSE_ID, (int) id);
-                    //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
-                    startActivity(intent);
-
-            }
-        };
-
-        ListView listView = (ListView) findViewById(R.id.rejse_options);
-        listView.setOnItemClickListener(itemClickListener);
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getRejse(), new String[] {"REJSENAVN"}, new int[]{android.R.id.text1});
-        listView.setAdapter(adapter);
-
+    initList();
 
 
     }
@@ -122,24 +105,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initList(){
         ListView lvRejser = (ListView)findViewById(R.id.rejse_options);
 
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
 
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = (int) v.getTag();
-                if(v.getId() == R.id.visRejseKortBtn) {
-                    //Intent intent = new Intent(MainActivity.this, VisRejsekort_activity.class);
-                    //startActivity(intent);
-                }else{
-                    Intent intent = new Intent(MainActivity.this, Note.class);
-                    startActivity(intent);
 
-                }
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Log.v("Adapter", "clicked + id");
+
+                Intent intent = new Intent(MainActivity.this, Note.class);
+                intent.putExtra(Note.REJSE_ID, (int) id);
+                //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
+                startActivity(intent);
+
             }
         };
 
+
         Cursor cursor = storage.getRejse();
-        RejseAdapter adapter = new RejseAdapter(this, cursor, 0, listener);
+        RejseAdapter adapter = new RejseAdapter(this, cursor, 0);
+
+
+        lvRejser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(view.getId()==R.id.visRejseKortBtn){
+                    Log.v("ClickListener", "button click");
+                    Snackbar myScack = Snackbar.make(findViewById(R.id.rejse_options), "Ikke implementeret", Snackbar.LENGTH_SHORT);
+                    myScack.show();
+                }
+                Log.v("Adapter", "clicked + id");
+
+                Intent intent = new Intent(MainActivity.this, Note.class);
+                intent.putExtra(Note.REJSE_ID, (int) id);
+                //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
+                startActivity(intent);
+
+            }
+        });
         lvRejser.setAdapter(adapter);
 
 
