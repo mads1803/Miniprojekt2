@@ -61,8 +61,9 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v) {
-                startActivity(new Intent(Note.this, OpretNote.class));
-
+                Intent intent = new Intent(Note.this, OpretNote.class);
+                intent.putExtra("rejse_id", REJSE_ID);
+                startActivity(intent);
             }
         });
 
@@ -72,12 +73,11 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         listView.setAdapter(adapter);
 
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-
-
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 0) {
                     Intent intent = new Intent(Note.this, NoteData.class);
+                    //intent.putExtra("noteTitel", note)
                     startActivity(intent);
                 }
             }

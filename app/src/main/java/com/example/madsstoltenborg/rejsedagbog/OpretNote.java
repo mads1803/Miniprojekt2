@@ -14,11 +14,15 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.w3c.dom.Text;
+
 public class OpretNote extends AppCompatActivity {
 private Storage storage;
 private static final int REQUEST_GET_MAP_LOCATION = 0;
 private LatLng lokation;
-
+private String noteNavn = "";
+public static final String REJSE_ID = "Rejse_id";
+private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +32,8 @@ private LatLng lokation;
         // Set toolbar text
         getSupportActionBar().setTitle("Opret note");
 
-        //TODO: Skal oprette en rejse
+        id = (int)getIntent().getExtras().get(REJSE_ID);
+
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_opret);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +41,16 @@ private LatLng lokation;
                 TextView titel = findViewById(R.id.note_titel);
                 String sTitel = titel.getText().toString();
 
+                noteNavn = sTitel;
+
                 TextView beskrivelse = findViewById(R.id.note_beskrivelse);
                 String sBeskrivelse = beskrivelse.getText().toString();
 
-                // TODO: Tilføje den rigtige rejse og dato
-                storage.insertDagbogsNote(sTitel, 0, sBeskrivelse, lokation,"www.example.com", "10-10-1001");
+                TextView weblink = findViewById(R.id.note_weblink);
+                String sWeblink = beskrivelse.getText().toString();
+
+                // TODO: dato
+                storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation,sWeblink, "10-10-1001");
 
                 finish();
             }
@@ -74,8 +84,8 @@ private LatLng lokation;
 
             double latitude = lokation.latitude;
             double longitude = lokation.longitude;
-            
-            intent.putExtra("latitude", latitude).putExtra("longitude", longitude);
+
+            intent.putExtra("latitude", latitude).putExtra("longitude", longitude).putExtra("noteNavn", noteNavn);
         }
 
         startActivityForResult(intent, REQUEST_GET_MAP_LOCATION);
@@ -88,10 +98,6 @@ private LatLng lokation;
             double longitude = data.getDoubleExtra("longitude", 0);
 
             lokation = new LatLng(latitude, longitude);
-
-            TextView tvLokation = findViewById(R.id.note_titel);
-            tvLokation.setText(""+lokation);
-
         }
     }
 }

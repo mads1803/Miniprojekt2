@@ -13,8 +13,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-public class NoteData extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class NoteData extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+private Intent intent = getIntent();
+private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +34,17 @@ public class NoteData extends AppCompatActivity implements NavigationView.OnNavi
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set toolbar text
+        getSupportActionBar().setTitle(intent.getStringExtra("noteTitel"));
+
+        TextView beskrivelse = findViewById(R.id.selected_beskrivelse);
+        beskrivelse.setText(intent.getStringExtra("noteBeskrivelse"));
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.selected_map);
+
+        mapFragment.getMapAsync(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,9 +77,7 @@ public class NoteData extends AppCompatActivity implements NavigationView.OnNavi
 
         switch(id) {
             case R.id.action_settings:
-                //showAddProductDialog();
                 break;
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -83,5 +103,12 @@ public class NoteData extends AppCompatActivity implements NavigationView.OnNavi
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng position = new LatLng(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude",0));
+        MarkerOptions marker = new MarkerOptions().position(position).title(intent.getStringExtra("noteTitel"));
+        mMap.addMarker(marker);
     }
 }
