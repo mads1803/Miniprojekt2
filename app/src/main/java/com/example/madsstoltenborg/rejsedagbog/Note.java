@@ -88,14 +88,18 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
+                Intent intent = new Intent(Note.this, RedigerNote.class);
 
-                Toast toast = Toast.makeText(Note.this, text, duration);
+                startActivity(intent);
+
+                //TODO lav til en snackbar
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(Note.this, R.string.rediger, duration);
                 toast.show();
                 return false;
             }
         };
+        listView.setOnItemLongClickListener(itemLongClickListener);
 
     }
 
