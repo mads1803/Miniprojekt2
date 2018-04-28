@@ -56,10 +56,10 @@ private Dagbogsnote note = null;
         TextView beskrivelse = findViewById(R.id.selected_beskrivelse);
         beskrivelse.setText(note.getTitel());
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.selected_map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         //TODO: Kan ikke finde map FIIIIX
-        //mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -75,13 +75,13 @@ private Dagbogsnote note = null;
         navigationView.setNavigationItemSelectedListener(this);
         drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
 
+
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
         LatLng position = note.getLokation();
-        Log.d("DEMO", "onMapReady: POSTITION" + position);
         MarkerOptions marker = new MarkerOptions().position(position).title(note.getTitel());
         mMap.addMarker(marker);
     }
