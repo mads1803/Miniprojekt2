@@ -46,7 +46,7 @@ private int id;
               final String sDato = dato.getText().toString();
 
                 //TODO ÆNDRER TIL NOTE ID
-              id = (int)getIntent().getExtras().get(Note.REJSE_ID);
+              id = (int)getIntent().getExtras().get(NoteData.NOTE_ID);
               NoteCursorWrapper cursor =  storage.getDagbogsNote(id);
 
              Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
