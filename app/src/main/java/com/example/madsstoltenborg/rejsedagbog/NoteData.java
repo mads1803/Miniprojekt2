@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +27,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class NoteData extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 private Intent intent = getIntent();
 private GoogleMap mMap;
+public static final String NOTE_ID = "Note_id";
+private int id;
+private Storage storage;
+private Dagbogsnote note = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +40,26 @@ private GoogleMap mMap;
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        storage = Storage.getInstance();
+
+        id = (int)getIntent().getExtras().get(NOTE_ID);
+        NoteCursorWrapper cursor = storage.getNote(id);
+
+        if(cursor.moveToFirst()){
+             note = cursor.getDagbogsNote();
+        }
+
+
         // Set toolbar text
-        getSupportActionBar().setTitle(intent.getStringExtra("noteTitel"));
+        getSupportActionBar().setTitle(note.getTitel());
 
         TextView beskrivelse = findViewById(R.id.selected_beskrivelse);
-        beskrivelse.setText(intent.getStringExtra("noteBeskrivelse"));
+        beskrivelse.setText(note.getTitel());
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.selected_map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.selected_map);
 
-        mapFragment.getMapAsync(this);
+        //TODO: Kan ikke finde map FIIIIX
+        //mapFragment.getMapAsync(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,8 +75,15 @@ private GoogleMap mMap;
         navigationView.setNavigationItemSelectedListener(this);
         drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
 
+    }
 
-
+    @Override
+    public void onMapReady(GoogleMap map) {
+        mMap = map;
+        LatLng position = note.getLokation();
+        Log.d("DEMO", "onMapReady: POSTITION" + position);
+        MarkerOptions marker = new MarkerOptions().position(position).title(note.getTitel());
+        mMap.addMarker(marker);
     }
 
     public void onClickWebView(View view){
@@ -105,10 +127,5 @@ private GoogleMap mMap;
         }
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        LatLng position = new LatLng(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude",0));
-        MarkerOptions marker = new MarkerOptions().position(position).title(intent.getStringExtra("noteTitel"));
-        mMap.addMarker(marker);
-    }
+
 }
