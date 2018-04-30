@@ -102,6 +102,18 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        initList();
+    }
+
+    public  void initList(){
+        ListView listView = (ListView) findViewById(R.id.note_options);
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getDagbogsNote(id), new String[] {"TITEL"}, new int[]{android.R.id.text1});
+        listView.setAdapter(adapter);
+    }
 
 
     @Override

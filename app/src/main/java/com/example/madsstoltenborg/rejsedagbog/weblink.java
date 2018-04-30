@@ -17,9 +17,12 @@ public class weblink extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Weblink");
+
 
         WebView myWebView = (WebView) findViewById(R.id.note_webview);
-        myWebView.loadUrl("http://www.example.com");
+        //TODO: Fixe HTTP her
+        myWebView.loadUrl("www.example.com");
     }
 
     @Override

@@ -42,6 +42,7 @@ private Dagbogsnote note = null;
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+
         storage = Storage.getInstance();
 
         id = (int)getIntent().getExtras().get(NOTE_ID);
@@ -50,10 +51,10 @@ private Dagbogsnote note = null;
         if(cursor.moveToFirst()){
              note = cursor.getDagbogsNote();
         }
-
-
         // Set toolbar text
         getSupportActionBar().setTitle(note.getTitel());
+
+
 
         TextView beskrivelse = findViewById(R.id.selected_beskrivelse);
         beskrivelse.setText(note.getTitel());
@@ -97,6 +98,8 @@ private Dagbogsnote note = null;
     }
 
     public void onClickWebView(View view){
+        Intent intent = new Intent();
+
         startActivity(new Intent(this, weblink.class));
     }
 

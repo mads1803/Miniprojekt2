@@ -50,7 +50,7 @@ private int id;
                 String sWeblink = beskrivelse.getText().toString();
 
                 // TODO: dato
-                storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation,sWeblink, "10-10-1001");
+                storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation, sWeblink, "10-10-1001");
 
                 finish();
             }

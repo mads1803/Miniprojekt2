@@ -115,10 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_send:
                 Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
                 break;
-
-
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -157,9 +153,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Cursor cursor = storage.getRejse();
         RejseAdapter adapter = new RejseAdapter(this, cursor, 0, btnlistener);
 
-
-
-
         lvRejser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -181,5 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lvRejser.setAdapter(adapter);
 
     }
+
+
 
 }
