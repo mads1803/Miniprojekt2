@@ -19,6 +19,7 @@ private Storage storage;
 private static final int REQUEST_GET_MAP_LOCATION = 0;
 private LatLng lokation;
 private int id;
+public static String NOTE_ID;
 
 
     @Override
@@ -33,20 +34,20 @@ private int id;
         //TODO: Skal oprette en rejse
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.note_rediger);
 
-                TextView titel = findViewById(R.id.rediger_note_titel);
-                final String sTitel = titel.getText().toString();
+              final TextView titel = findViewById(R.id.rediger_note_titel);
 
-                TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
-                final String sBeskrivelse = beskrivelse.getText().toString();
 
-                TextView weblink = findViewById(R.id.rediger_note_weblink);
-                final String sweblink = weblink.getText().toString();
+               final TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
 
-              TextView dato = findViewById(R.id.rediger_note_dato);
-              final String sDato = dato.getText().toString();
+
+        final  TextView weblink = findViewById(R.id.rediger_note_weblink);
+
+
+        final  TextView dato = findViewById(R.id.rediger_note_dato);
+
 
                 //TODO ÆNDRER TIL NOTE ID
-              id = (int)getIntent().getExtras().get(NoteData.NOTE_ID);
+              id = (int)getIntent().getExtras().get(NOTE_ID);
               NoteCursorWrapper cursor =  storage.getDagbogsNote(id);
 
              Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
@@ -66,8 +67,12 @@ private int id;
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sTitel = titel.getText().toString();
+                String sBeskrivelse = beskrivelse.getText().toString();
+                String sweblink = weblink.getText().toString();
+                String sDato = dato.getText().toString();
                 //TODO get rejseID
-            storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation,sweblink ,sDato);
+            storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation, sweblink ,sDato);
 
             }
         });
