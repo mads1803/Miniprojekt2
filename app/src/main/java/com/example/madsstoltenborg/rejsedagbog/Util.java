@@ -9,11 +9,18 @@ import android.view.View;
  */
 
 public class Util {
+    private static int duration;
 
 
-    public static void showSnackBar(Activity activity, String message){
+    public static void showSnackBar(Activity activity, String message, int dur){
+        if(dur ==0){
+            duration = Snackbar.LENGTH_SHORT;
+
+        }else{
+            duration= Snackbar.LENGTH_LONG;
+        }
         View rootView = activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(rootView, message, duration).show();
     }
 
 }

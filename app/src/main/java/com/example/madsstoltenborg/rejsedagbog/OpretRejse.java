@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class OpretRejse extends AppCompatActivity implements View.OnClickListener {
+public class OpretRejse extends AppCompatActivity implements View.OnClickListener{
     //UI References
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
@@ -52,24 +52,37 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView titel = findViewById(R.id.rejse_titel);
-                String titel1 = titel.getText().toString();
+                TextView titel =  findViewById(R.id.rejse_titel);
+                String titel1 =  titel.getText().toString();
 
-                TextView beskrivelse = findViewById(R.id.rejse_beskrivelse);
-                String beskrivelse1 = beskrivelse.getText().toString();
+                TextView beskrivelse =  findViewById(R.id.rejse_beskrivelse);
+                String beskrivelse1 =  beskrivelse.getText().toString();
 
                 TextView dateFra = findViewById(R.id.etxt_fromdate);
-                String fra = dateFra.getText().toString();
+                String fra =  dateFra.getText().toString();
 
                 TextView dateTil = findViewById(R.id.etxt_todate);
                 String til = dateTil.getText().toString();
 
 
-                storage.insertRejse(titel1, beskrivelse1, fra, til);
+                if(titel1.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Udfyld en Titel!",0);
+                }else if(fra.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Vælg en startdato først!",0);
+                }else if(til.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Vælg en slutdato først!",0);
+                }else {
 
-                finish();
+                    storage.insertRejse(titel1, beskrivelse1, fra, til);
+
+                    finish();
+                }
+
+
+
             }
         });
+
 
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
@@ -104,7 +117,7 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
                 fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
             }
 
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
         toDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -114,15 +127,15 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
                 toDateEtxt.setText(dateFormatter.format(newDate.getTime()));
             }
 
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
     }
 
     @Override
     public void onClick(View view) {
-        if (view == fromDateEtxt) {
+        if(view == fromDateEtxt) {
             fromDatePickerDialog.show();
-        } else if (view == toDateEtxt) {
+        } else if(view == toDateEtxt) {
             toDatePickerDialog.show();
         }
     }

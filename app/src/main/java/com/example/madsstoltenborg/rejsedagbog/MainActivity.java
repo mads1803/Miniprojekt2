@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(id) {
             case R.id.nav_start:
                 Intent startIntent = new Intent(this, MainActivity.class);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(startIntent);
                 break;
             case R.id.nav_kort:
@@ -105,16 +106,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(mapIntent);
                 break;
             case R.id.nav_favouritter:
-                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret",0);
                 break;
             case R.id.nav_kalender:
-                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret",0);
                 break;
             case R.id.nav_info:
-                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret",0);
                 break;
             case R.id.nav_send:
-                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret",0);
                 break;
         }
 
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 long id = (long) view.getTag();
 
 
-                Util.showSnackBar(MainActivity.this, "Ikke implementeret");
+                Util.showSnackBar(MainActivity.this, "Ikke implementeret",0);
 
             }
         };

@@ -3,6 +3,7 @@ package com.example.madsstoltenborg.rejsedagbog;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Path;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,9 +68,19 @@ public class OpretNote extends AppCompatActivity implements View.OnClickListener
                 note_fromDateEtxt2 = (EditText) findViewById(R.id.note_fromDateEtxt2);
                 String dato = note_fromDateEtxt2.getText().toString();
 
-                storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation, sWeblink, dato);
+                if(sTitel.length()<=0){
 
-                finish();
+                    Util.showSnackBar(OpretNote.this, "Udfyld en Titel!",0);
+                }else if(dato.isEmpty()){
+                    Util.showSnackBar(OpretNote.this, "Vælg en dato først!",0);
+                }else if(lokation==null){
+                    Util.showSnackBar(OpretNote.this, "Vælg en lokation først!",0);
+                }else {
+
+                    storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation, sWeblink, dato);
+
+                    finish();
+                }
             }
         });
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);

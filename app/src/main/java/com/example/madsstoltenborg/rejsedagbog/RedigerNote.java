@@ -50,7 +50,7 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
         setSupportActionBar(myToolbar);
         // Set toolbar text
         getSupportActionBar().setTitle("Rediger note");
-        Util.showSnackBar(RedigerNote.this, "Redigér note");
+        Util.showSnackBar(RedigerNote.this, "Redigér note",0);
 
         storage = Storage.getInstance();
 
@@ -84,10 +84,21 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
                 String sweblink = weblink.getText().toString();
                 String sDato = dato.getText().toString();
 
-           
+                Util.showSnackBar(RedigerNote.this, "Note redigeret",0);
+                if(sTitel.length()<=0){
 
-                storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation, sweblink, sDato);
-                finish();
+                    Util.showSnackBar(RedigerNote.this, "Udfyld en Titel!",0);
+                }else if(sDato.isEmpty()){
+                    Util.showSnackBar(RedigerNote.this, "Vælg en dato først!",0);
+                }else if(lokation==null){
+                    Util.showSnackBar(RedigerNote.this, "Vælg en lokation først!",0);
+                }else {
+
+                    storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation, sweblink, sDato);
+                    finish();
+                }
+
+
             }
         });
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
