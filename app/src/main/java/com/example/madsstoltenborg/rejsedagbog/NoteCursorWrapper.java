@@ -24,7 +24,7 @@ public class NoteCursorWrapper extends CursorWrapper {
         String beskrivelse = getString(getColumnIndex("BESKRIVELSE"));
         String lokationStr = getString(getColumnIndex("LOKATION"));
 
-        String weblink = getString(getColumnIndex("WEBLINK"));
+        String weblinkStr = getString(getColumnIndex("WEBLINK"));
         String datoStr = getString(getColumnIndex("DATO"));
 
 
@@ -32,16 +32,9 @@ public class NoteCursorWrapper extends CursorWrapper {
         double lat = Double.parseDouble(latlong[0]);
         double longi = Double.parseDouble(latlong[1]);
 
-//        Calendar dato = Calendar.getInstance();
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date;
-//        try {
-//            date = df.parse(datoStr);
-//            dato.setTime(date);
-//
-//        } catch (ParseException e){
-//            e.printStackTrace();
-//        }
+        String[] web = weblinkStr.split("www");
+        String weblink = "http://www" + web[1];
+        
 
         //TODO Lav longitude og latitude til en lokation
         LatLng lokation = new LatLng(lat, longi);
