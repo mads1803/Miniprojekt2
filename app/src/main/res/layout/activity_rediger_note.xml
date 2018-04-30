@@ -34,7 +34,7 @@
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/rediger_note_dato"
+        android:id="@+id/edit_fromDateEtxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
