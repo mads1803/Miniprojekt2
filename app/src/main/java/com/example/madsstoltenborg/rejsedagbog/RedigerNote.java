@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -82,6 +83,8 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
                 String sBeskrivelse = beskrivelse.getText().toString();
                 String sweblink = weblink.getText().toString();
                 String sDato = dato.getText().toString();
+
+           
 
                 storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation, sweblink, sDato);
                 finish();
