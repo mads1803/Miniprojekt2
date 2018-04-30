@@ -22,6 +22,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import static com.example.madsstoltenborg.rejsedagbog.NoteData.NOTE_ID;
+import static com.example.madsstoltenborg.rejsedagbog.RedigerNote.EDIT_ID;
 
 public class Note extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -88,14 +89,14 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(Note.this, RedigerNote.class);
-                intent.putExtra(RedigerNote.REDIGERINGS_ID, (int) l);
+                intent.putExtra(EDIT_ID, (int) l);
                 startActivity(intent);
 
                 //TODO lav til en snackbar
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(Note.this, R.string.rediger, duration);
                 toast.show();
-                return false;
+                return true;
             }
         };
         listView.setOnItemLongClickListener(itemLongClickListener);
