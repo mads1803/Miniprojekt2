@@ -25,12 +25,13 @@
 
     <EditText
         android:id="@+id/note_weblink"
+        style="@android:style/Widget.DeviceDefault.Light.WebTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
         android:hint="Weblink"
-        android:inputType="textPersonName"
+        android:inputType="textWebEditText"
         android:textSize="24sp" />
 
     <EditText
@@ -41,6 +42,7 @@
         android:ems="10"
         android:hint="Dato"
         android:inputType="textPersonName"
+        android:focusable="false"
         android:textSize="24sp" />
 
     <Button

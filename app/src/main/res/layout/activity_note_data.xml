@@ -17,14 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ScrollView
+            <android.support.design.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="match_parent"
                 android:layout_weight="2">
 
                 <LinearLayout
@@ -32,24 +36,36 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/selected_beskrivelse"
+                    <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:text="BlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldasl"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="8dp" />
+                        android:layout_weight="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/selected_beskrivelse"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="BlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldaslBlaalsdlsaldasl"
+                                tools:layout_editor_absoluteX="8dp"
+                                tools:layout_editor_absoluteY="8dp" />
+                        </LinearLayout>
+                    </ScrollView>
+
+                    <include
+                        android:id="@+id/selected_map"
+                        layout="@layout/activity_maps"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
                 </LinearLayout>
-            </ScrollView>
+            </android.support.design.widget.CoordinatorLayout>
 
-
-            <include
-                android:id="@+id/selected_map"
-                layout="@layout/activity_maps"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="2" />
 
             <Button
                 android:id="@+id/selected_weblink"

@@ -112,6 +112,7 @@ public class OpretNote extends AppCompatActivity implements View.OnClickListener
         if (view == note_fromDateEtxt2) {
             fromDatePickerDialog.show();
         }
+        fromDatePickerDialog.show();
     }
 
     @Override

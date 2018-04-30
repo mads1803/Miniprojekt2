@@ -39,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
+        android:focusable="false"
         android:hint="Dato"
-        android:inputType="textPersonName"
+        android:inputType="textWebEditText"
         android:textSize="24sp" />
 
     <Button

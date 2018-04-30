@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Fra"
+        android:hint="Fra dato"
+        android:focusable="false"
         android:inputType="textPersonName" />
 
     <EditText
@@ -40,7 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
-        android:hint="Til"
+        android:hint="Til dato"
+        android:focusable="false"
         android:inputType="textPersonName" />
 
     <FrameLayout
