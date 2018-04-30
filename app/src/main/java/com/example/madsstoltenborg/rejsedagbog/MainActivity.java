@@ -141,9 +141,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View.OnClickListener btnlistener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast t = Toast.makeText(MainActivity.this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
-                t.show();
-                //Snackbar snackbar = Snackbar.make(findViewById(R.id.Root), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
+
+                long id = (long) view.getTag();
+
+                Util.showSnackBar(MainActivity.this, "Ikke implementeret");
+                Snackbar snackbar = Snackbar.make(MainActivity.this.getWindow().getDecorView().findViewById(android.R.id.content), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
             }
         };
 
@@ -157,16 +159,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(view.getId()==R.id.visRejseKortBtn){
-                    Log.v("ClickListener", "button click");
-                    Snackbar myScack = Snackbar.make(findViewById(R.id.rejse_options), "Ikke implementeret", Snackbar.LENGTH_SHORT);
-                    myScack.show();
-                }
+
                 Log.v("Adapter", "clicked + id");
 
                 Intent intent = new Intent(MainActivity.this, Note.class);
                 intent.putExtra(Note.REJSE_ID, (int) id);
-                //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
+
                 startActivity(intent);
 
             }
