@@ -11,9 +11,6 @@ import android.view.View;
 public class Util {
 
 
-
-
-
     public static void showSnackBar(Activity activity, String message){
         View rootView = activity.getWindow().getDecorView().findViewById(android.R.id.content);
         Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();

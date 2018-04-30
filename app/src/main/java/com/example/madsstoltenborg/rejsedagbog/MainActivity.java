@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 long id = (long) view.getTag();
 
+
                 Util.showSnackBar(MainActivity.this, "Ikke implementeret");
 
             }
@@ -169,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+
         lvRejser.setAdapter(adapter);
 
     }
