@@ -135,19 +135,28 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_start) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-        } else if (id == R.id.nav_kort) {
-            startActivity(new Intent(this, Destination.class));
-        } else if (id == R.id.nav_favouritter) {
-
-        } else if (id == R.id.nav_kalender) {
-
-        } else if (id == R.id.nav_info) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch(id) {
+            case R.id.nav_start:
+                Intent startIntent = new Intent(this, MainActivity.class);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(startIntent);
+                break;
+            case R.id.nav_kort:
+                Intent mapIntent = new Intent (this, Destination.class);
+                startActivity(mapIntent);
+                break;
+            case R.id.nav_favouritter:
+                Util.showSnackBar(Note.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_kalender:
+                Util.showSnackBar(Note.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_info:
+                Util.showSnackBar(Note.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_send:
+                Util.showSnackBar(Note.this, "Ikke Implementeret",0);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
