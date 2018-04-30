@@ -1,8 +1,10 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -24,7 +26,7 @@ public class NoteCursorWrapper extends CursorWrapper {
         String beskrivelse = getString(getColumnIndex("BESKRIVELSE"));
         String lokationStr = getString(getColumnIndex("LOKATION"));
 
-        String weblinkStr = getString(getColumnIndex("WEBLINK"));
+        String weblink = getString(getColumnIndex("WEBLINK"));
         String datoStr = getString(getColumnIndex("DATO"));
 
 
@@ -32,9 +34,6 @@ public class NoteCursorWrapper extends CursorWrapper {
         double lat = Double.parseDouble(latlong[0]);
         double longi = Double.parseDouble(latlong[1]);
 
-        String[] web = weblinkStr.split("www");
-        String weblink = "http://www" + web[1];
-        
 
         //TODO Lav longitude og latitude til en lokation
         LatLng lokation = new LatLng(lat, longi);
