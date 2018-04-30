@@ -97,7 +97,7 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
     }
 
     private void findViewsById() {
-        edit_fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
+        edit_fromDateEtxt = (EditText) findViewById(R.id.edit_fromDateEtxt);
         edit_fromDateEtxt.setInputType(InputType.TYPE_NULL);
         edit_fromDateEtxt.requestFocus();
 
