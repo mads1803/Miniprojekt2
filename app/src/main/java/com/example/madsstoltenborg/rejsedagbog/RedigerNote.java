@@ -19,7 +19,7 @@ private Storage storage;
 private static final int REQUEST_GET_MAP_LOCATION = 0;
 private LatLng lokation;
 private int id;
-public static String NOTE_ID;
+public static String REDIGERINGS_ID;
 
 
     @Override
@@ -47,7 +47,7 @@ public static String NOTE_ID;
 
 
                 //TODO ÆNDRER TIL NOTE ID
-              id = (int)getIntent().getExtras().get(NOTE_ID);
+              id = (int)getIntent().getExtras().get(REDIGERINGS_ID);
               NoteCursorWrapper cursor =  storage.getDagbogsNote(id);
 
              Dagbogsnote redigeringsNote = cursor.getDagbogsNote();
