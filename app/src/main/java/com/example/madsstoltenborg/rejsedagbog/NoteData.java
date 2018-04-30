@@ -109,7 +109,26 @@ private Dagbogsnote note = null;
         Intent intent = null;
 
         switch(id) {
-            case R.id.action_settings:
+            case R.id.nav_start:
+                Intent startIntent = new Intent(this, MainActivity.class);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(startIntent);
+                break;
+            case R.id.nav_kort:
+                Intent mapIntent = new Intent (this, Destination.class);
+                startActivity(mapIntent);
+                break;
+            case R.id.nav_favouritter:
+                Util.showSnackBar(NoteData.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_kalender:
+                Util.showSnackBar(NoteData.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_info:
+                Util.showSnackBar(NoteData.this, "Ikke Implementeret",0);
+                break;
+            case R.id.nav_send:
+                Util.showSnackBar(NoteData.this, "Ikke Implementeret",0);
                 break;
         }
 
