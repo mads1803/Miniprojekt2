@@ -89,7 +89,11 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         // Set a listener for marker click.
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapLongClickListener(this);
-        GpsPermission();
+
+        if(getIntent().getStringExtra("edit") == null){
+            GpsPermission();
+        }
+
     }
 
 
@@ -116,24 +120,27 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                 // result of the request.
             }
         }
+        else {
+            Log.d("DEMO", "onMapReady: Ja");
+            mMap.setMyLocationEnabled(true);
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, true);
+            Location location = locationManager.getLastKnownLocation(provider);
 
-        Log.d("DEMO", "onMapReady: Ja");
-        mMap.setMyLocationEnabled(true);
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria, true);
-        Location location = locationManager.getLastKnownLocation(provider);
+            Log.d("DEMO", "onMapReady: Location" + location );
 
-        Log.d("DEMO", "onMapReady: Location" + location );
+            if (location != null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
 
-        if (location != null) {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-
-            LatLng coordinate = new LatLng(latitude, longitude);
-            CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 7);
-            mMap.animateCamera(yourLocation);
+                LatLng coordinate = new LatLng(latitude, longitude);
+                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 7);
+                mMap.animateCamera(yourLocation);
+            }
         }
+
+
     }
 
     /** Called when the user clicks a marker. */

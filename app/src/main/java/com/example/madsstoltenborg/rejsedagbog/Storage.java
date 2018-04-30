@@ -107,8 +107,11 @@ insertDagbogsNote("Hej jeg er på Himalaya",1, "Løber", lokation, "www.hima.dk"
     }
 
     public static void updateDagbogsNote (long note_id, String titel, int rejse_id, String beskrivelse, LatLng lokation, String weblink, String dato){
-        String lokationStr = lokation.toString();
-        //String datoStr = dato.toString();
+
+        double lat = lokation.latitude;
+        double longi = lokation.longitude;
+
+        String lokationStr = ""+lat +","+longi;
 
         SQLiteDatabase db = rejseDatabaseHelper.getWritableDatabase();
         ContentValues dagbogsValues = new ContentValues();
