@@ -84,7 +84,7 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
                 String sweblink = weblink.getText().toString();
                 String sDato = dato.getText().toString();
 
-                Util.showSnackBar(RedigerNote.this, "Note redigeret",0);
+
                 if(sTitel.length()<=0){
 
                     Util.showSnackBar(RedigerNote.this, "Udfyld en Titel!",0);
