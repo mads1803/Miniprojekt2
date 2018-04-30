@@ -102,18 +102,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_kort:
                 Intent mapIntent = new Intent (this, Destination.class);
+                startActivity(mapIntent);
                 break;
             case R.id.nav_favouritter:
-                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
                 break;
             case R.id.nav_kalender:
-                Toast.makeText(MainActivity.this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
                 break;
             case R.id.nav_info:
-                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
                 break;
             case R.id.nav_send:
-                Toast.makeText(this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
+                Util.showSnackBar(MainActivity.this, "Ikke Implementeret");
                 break;
         }
 
@@ -133,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 Intent intent = new Intent(MainActivity.this, Note.class);
                 intent.putExtra(Note.REJSE_ID, (int) id);
-                //intent.putExtra(DrinkActivity.EXTRA_DRINKID, (int) id)
                 startActivity(intent);
 
             }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 long id = (long) view.getTag();
 
                 Util.showSnackBar(MainActivity.this, "Ikke implementeret");
-                Snackbar snackbar = Snackbar.make(MainActivity.this.getWindow().getDecorView().findViewById(android.R.id.content), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
+
             }
         };
 
