@@ -65,10 +65,21 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
                 String til = dateTil.getText().toString();
 
 
+                if(titel1.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Udfyld en Titel!",0);
+                }else if(fra.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Vælg en startdato først!",0);
+                }else if(til.isEmpty()){
+                    Util.showSnackBar(OpretRejse.this, "Vælg en slutdato først!",0);
+                }else {
 
-                storage.insertRejse(titel1, beskrivelse1, fra, til);
+                    storage.insertRejse(titel1, beskrivelse1, fra, til);
 
-                finish();
+                    finish();
+                }
+
+
+
             }
         });
 
