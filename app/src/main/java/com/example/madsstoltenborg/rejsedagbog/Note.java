@@ -92,10 +92,6 @@ public class Note extends AppCompatActivity implements NavigationView.OnNavigati
                 intent.putExtra(EDIT_ID, (int) l);
                 startActivity(intent);
 
-                //TODO lav til en snackbar
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(Note.this, R.string.rediger, duration);
-                toast.show();
                 return true;
             }
         };
