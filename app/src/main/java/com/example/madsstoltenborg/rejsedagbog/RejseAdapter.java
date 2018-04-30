@@ -44,7 +44,7 @@ public class RejseAdapter extends CursorAdapter {
 
         TextView tvRejseNavn = (TextView) view.findViewById(R.id.rejseNavn);
         tvRejseNavn.setText(rejse.getRejseNavn());
-        tvRejseNavn.setTag(rejse.getId());
+
 
         TextView tvRejseDato = (TextView) view.findViewById(R.id.rejseDato);
 
@@ -52,6 +52,7 @@ public class RejseAdapter extends CursorAdapter {
         tvRejseDato.setText(String.format(rejse.getRejseStart() + "  -  " + rejse.getRejseSlut()));
 
         Button rejsekortBtn = (Button) view.findViewById(R.id.visRejseKortBtn);
+        rejsekortBtn.setTag(rejse.getId());
         rejsekortBtn.setOnClickListener(listener);
 
 
