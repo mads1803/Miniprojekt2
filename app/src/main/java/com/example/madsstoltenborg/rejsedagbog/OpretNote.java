@@ -66,7 +66,7 @@ public class OpretNote extends AppCompatActivity implements View.OnClickListener
 
                 note_fromDateEtxt2 = (EditText) findViewById(R.id.note_fromDateEtxt2);
                 String dato = note_fromDateEtxt2.getText().toString();
-                
+
                 storage.insertDagbogsNote(sTitel, id, sBeskrivelse, lokation, sWeblink, dato);
 
                 finish();
