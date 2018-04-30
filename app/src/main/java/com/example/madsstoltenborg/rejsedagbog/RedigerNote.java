@@ -1,21 +1,29 @@
 package com.example.madsstoltenborg.rejsedagbog;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class RedigerNote extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class RedigerNote extends AppCompatActivity implements View.OnClickListener{
     private Storage storage;
     private static final int REQUEST_GET_MAP_LOCATION = 0;
     private LatLng lokation;
@@ -24,6 +32,14 @@ public class RedigerNote extends AppCompatActivity {
     public static final String EDIT_ID = "Edit_id";
     private int id;
     private Intent intent;
+
+    //UI References
+    private EditText edit_fromDateEtxt;
+
+    private DatePickerDialog fromDatePickerDialog;
+    private DatePickerDialog toDatePickerDialog;
+
+    private SimpleDateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +57,7 @@ public class RedigerNote extends AppCompatActivity {
         final TextView titel = findViewById(R.id.rediger_note_titel);
         final TextView beskrivelse = findViewById(R.id.rediger_note_beskrivelse);
         final TextView weblink = findViewById(R.id.rediger_note_weblink);
-        final TextView dato = findViewById(R.id.rediger_note_dato);
+        final TextView dato = findViewById(R.id.edit_fromDateEtxt);
 
 
         id = (int) getIntent().getExtras().get(EDIT_ID);
@@ -68,12 +84,50 @@ public class RedigerNote extends AppCompatActivity {
                 String sDato = dato.getText().toString();
 
                 storage.updateDagbogsNote(id, sTitel, rejseId, sBeskrivelse, lokation, sweblink, sDato);
-
+                finish();
             }
         });
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+        findViewsById();
+
+        setDateTimeField();
+
+        edit_fromDateEtxt.setOnClickListener(this);
+
     }
 
+    private void findViewsById() {
+        edit_fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
+        edit_fromDateEtxt.setInputType(InputType.TYPE_NULL);
+        edit_fromDateEtxt.requestFocus();
 
+    }
+
+    private void setDateTimeField() {
+        edit_fromDateEtxt.setOnClickListener(this);
+
+
+        Calendar newCalendar = Calendar.getInstance();
+        fromDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                edit_fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == edit_fromDateEtxt) {
+            fromDatePickerDialog.show();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -117,9 +171,7 @@ public class RedigerNote extends AppCompatActivity {
 
             lokation = new LatLng(latitude, longitude);
 
-            TextView tvLokation = findViewById(R.id.rediger_note_titel);
-            tvLokation.setText("" + lokation);
-
         }
     }
+
 }

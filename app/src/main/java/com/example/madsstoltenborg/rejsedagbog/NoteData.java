@@ -53,11 +53,9 @@ private Dagbogsnote note = null;
         }
         // Set toolbar text
         getSupportActionBar().setTitle(note.getTitel());
-
-
-
+        
         TextView beskrivelse = findViewById(R.id.selected_beskrivelse);
-        beskrivelse.setText(note.getTitel());
+        beskrivelse.setText(note.getBeskrivelse());
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

@@ -118,7 +118,6 @@ public class OpretRejse extends AppCompatActivity implements View.OnClickListene
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
-
     }
 
     @Override

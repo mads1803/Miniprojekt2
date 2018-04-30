@@ -26,6 +26,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -39,6 +40,7 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
     private double latitude;
     private double longitude;
     private String noteNavn;
+    private MarkerOptions markerOpt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
         if (marker != null){
             marker.setPosition(point);
         }else {
-            marker = mMap.addMarker(new MarkerOptions().position(point).title(point.toString()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            marker = mMap.addMarker(new MarkerOptions().position(point).title(noteNavn).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         }
 
         setResult(Activity.RESULT_OK, new Intent().putExtra("latitude", marker.getPosition().latitude).putExtra("longitude", marker.getPosition().longitude));
@@ -79,11 +81,10 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-        MarkerOptions marker;
+
         if(getIntent().getExtras() != null){
             LatLng position = new LatLng(latitude, longitude);
-            marker = new MarkerOptions().position(position).title(noteNavn);
-            mMap.addMarker(marker);
+            marker = mMap.addMarker(new MarkerOptions().position(position).title(noteNavn).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         }
 
         // Set a listener for marker click.
@@ -92,6 +93,10 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
 
         if(getIntent().getStringExtra("edit") == null){
             GpsPermission();
+        }
+        else{
+            LatLng position = new LatLng(latitude, longitude);
+            pointToPosition(position);
         }
 
     }
@@ -139,8 +144,16 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                 mMap.animateCamera(yourLocation);
             }
         }
+    }
 
 
+    private void pointToPosition(LatLng position) {
+        //Build camera position
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(position)
+                .zoom(5).build();
+        //Zoom in and animate the camera.
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     /** Called when the user clicks a marker. */
