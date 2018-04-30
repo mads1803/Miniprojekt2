@@ -123,6 +123,7 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
+
             }
         }
         else {
@@ -145,6 +146,12 @@ public class Destination extends AppCompatActivity implements OnMapReadyCallback
             }
         }
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        GpsPermission();
+    }
+
+
 
 
     private void pointToPosition(LatLng position) {
