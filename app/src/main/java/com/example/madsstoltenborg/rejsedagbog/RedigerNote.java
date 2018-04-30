@@ -49,6 +49,7 @@ public class RedigerNote extends AppCompatActivity implements View.OnClickListen
         setSupportActionBar(myToolbar);
         // Set toolbar text
         getSupportActionBar().setTitle("Rediger note");
+        Util.showSnackBar(RedigerNote.this, "Redigér note");
 
         storage = Storage.getInstance();
 
