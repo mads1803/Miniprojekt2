@@ -57,7 +57,7 @@
             android:layout_margin="20dp"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <EditText
             android:id="@+id/rejse_beskrivelse"
