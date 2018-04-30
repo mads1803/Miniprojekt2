@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 Toast t = Toast.makeText(MainActivity.this, R.string.ikke_implemeretet, Toast.LENGTH_SHORT);
                 t.show();
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.Root), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
+                //Snackbar snackbar = Snackbar.make(findViewById(R.id.Root), R.string.ikke_implemeretet, Snackbar.LENGTH_SHORT);
             }
         };
 
