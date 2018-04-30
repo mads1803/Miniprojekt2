@@ -43,7 +43,7 @@
         <activity android:name=".OpretRejse" />
         <activity android:name=".OpretNote" />
         <activity android:name=".NoteData" />
-        <activity android:name=".weblink"></activity>
+        <activity android:name=".Weblink"></activity>
         <activity android:name=".RedigerNote"></activity>
 
 

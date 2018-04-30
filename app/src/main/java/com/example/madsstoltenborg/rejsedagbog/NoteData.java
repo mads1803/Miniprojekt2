@@ -96,9 +96,9 @@ private Dagbogsnote note = null;
     }
 
     public void onClickWebView(View view){
-        Intent intent = new Intent();
-
-        startActivity(new Intent(this, Weblink.class));
+        Intent intent = new Intent(this, Weblink.class);
+        intent.putExtra("weblink", note.getWeblink());
+        startActivity(intent);
     }
 
 

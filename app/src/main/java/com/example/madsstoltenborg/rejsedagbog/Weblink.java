@@ -25,20 +25,25 @@ public class Weblink extends AppCompatActivity {
 
         WebView myWebView = (WebView) findViewById(R.id.note_webview);
         //TODO: Fixe HTTP her
-    String newWeblink = "http://www.example.com";
+        String newWeblink;
+        String url;
         try {
-         String url = getIntent().getStringExtra("weblink");
+            url = getIntent().getStringExtra("weblink");
+
             String[] web = url.split("www");
 
-             newWeblink = "http://www" + web[1];
-        }
-        catch (Exception e ) {
+            newWeblink = "http://www" + web[1];
+            Log.d("DEMO", "onCreate: LINK: " + url);
+        } catch (Exception e) {
+
             Context context = getApplicationContext();
             CharSequence text = "Invalid URL, here is a an Example";
+            newWeblink = "http://www.example.com";
             int duration = Toast.LENGTH_SHORT;
-
+            Log.d("DEMO", "onCreate: LINK " + newWeblink);
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
         }
 
         myWebView.loadUrl(newWeblink);
